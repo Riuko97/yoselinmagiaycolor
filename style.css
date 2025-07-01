@@ -1,0 +1,42 @@
+:root {
+    --accent-color: #C09553;
+    --accent-color-dark: #B08447;
+    --text-dark: #3A3226;
+    --text-medium: #6B5E4F;
+    --bg-warm-white: #FDFBF6;
+    --bg-warm-beige: #F5F1E9;
+    --border-warm: #EAE3D9;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--bg-warm-white);
+    color: var(--text-dark);
+}
+h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
+.font-tangerine { font-family: 'Tangerine', cursive; }
+.accent-text { color: var(--accent-color); }
+.btn-accent {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+.btn-accent:hover {
+    background-color: var(--accent-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(192, 149, 83, 0.3);
+}
+/* ...y el resto de tus estilos... */
+.video-container-vertical {
+  max-width: 400px; 
+  height: 80vh; 
+  margin: auto; 
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.video-container-vertical video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
