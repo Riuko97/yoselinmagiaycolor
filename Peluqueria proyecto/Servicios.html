@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoselin Magia y Color</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-[#3A3226]">
+
+    <nav class="bg-[#FDFBF6]/80 backdrop-blur-md sticky w-full z-30 top-0 start-0 shadow-sm">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="index.html" class="flex items-center space-x-3">
+                <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
+            </a>
+            <div class="flex md:order-2">
+                <a href="index.html#contacto" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
+                    Pedir Cita
+                </a>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <span class="sr-only">Abrir menú</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+                    <li><a href="#" class="block py-2 px-3 accent-text font-bold rounded md:bg-transparent md:p-0" aria-current="page">Servicios</a></li>
+                    <li><a href="index.html#galeria" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Galería</a></li>
+                    <li><a href="index.html#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="bg-[#F5F1E9] pt-32 pb-16 sm:pt-40 sm:pb-24">
+            <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Nuestros Servicios</h1>
+                    <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">Descubre un mundo de posibilidades para tu cabello y estética. Ofrecemos un servicio personalizado y utilizamos productos de alta gama para garantizar un resultado excepcional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-servicios" class="py-16 sm:py-20 bg-[#FDFBF6]">
+            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
+                
+                <div id="coloracion" class="mb-12 scroll-mt-24">
+                    <h2 class="text-3xl font-bold border-b-2 border-[var(--border-warm)] pb-4 mb-6">Coloración</h2>
+                    <p class="text-[#6B5E4F] mb-8 max-w-3xl">Expertos en las últimas tendencias de color. Utilizamos productos de alta gama para un resultado vibrante y un cabello sano y brillante.</p>
+                    <div class="space-y-4">
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Baño de Color</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">30€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">30€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Tinte Completo (incl. Cortar y Peinar)</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">60€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">33€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Tinte Raíz (incl. Cortar y Peinar)</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">38€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">33€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Mechas Balayage</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Extra Largo<p class="text-sm text-gray-500">2h 30min</p></div><span class="font-bold accent-text">160€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Largo<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">120€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">90€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Mechas Tradicionales</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Extra Largo<p class="text-sm text-gray-500">2h 30min</p></div><span class="font-bold accent-text">160€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Largo<p class="text-sm text-gray-500">2h 30min</p></div><span class="font-bold accent-text">160€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">120€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">90€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Mechas Ojo de Tigre</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Extra Largo<p class="text-sm text-gray-500">2h 30min</p></div><span class="font-bold accent-text">160€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Largo<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">120€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">1h 30min</p></div><span class="font-bold accent-text">90€</span></div></div></div></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Mechas Babylight</h4><p class="text-sm text-gray-500">2h</p></div><p class="font-bold text-lg accent-text">60€</p></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Matiz</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Matiz de Color (Largo)<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Matiz de Color (Medio/Corto)<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">30€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Matiz de Mechas (Largo)<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Matiz de Mechas (Medio/Corto)<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">30€</span></div></div></div></div>
+                    </div>
+                </div>
+
+                <div id="corte" class="mb-12 scroll-mt-24">
+                    <h2 class="text-3xl font-bold border-b-2 border-[var(--border-warm)] pb-4 mb-6">Corte</h2>
+                    <p class="text-[#6B5E4F] mb-8 max-w-3xl">Un buen corte es la base de todo gran estilo. Nuestros estilistas te asesoran para encontrar el corte que realce tus facciones y se adapte a tu estilo de vida.</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Corte Hombre</h4><p class="text-sm text-gray-500">20 min</p></div><p class="font-bold text-lg accent-text">12€</p></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Corte Mujer (incl. Peinar)</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo Liso<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">28€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Largo Rizado<p class="text-sm text-gray-500">1h</p></div><span class="font-bold accent-text">45€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">24€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio Rizado<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">30€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">22€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto Rizado<p class="text-sm text-gray-500">30 min</p></div><span class="font-bold accent-text">22€</span></div></div></div></div>
+                    </div>
+                </div>
+
+                <div id="tratamientos" class="mb-12 scroll-mt-24">
+                    <h2 class="text-3xl font-bold border-b-2 border-[var(--border-warm)] pb-4 mb-6">Tratamientos y Formas</h2>
+                     <p class="text-[#6B5E4F] mb-8 max-w-3xl">Desde alisados de larga duración hasta rizos definidos y tratamientos de reconstrucción profunda para devolverle la vida a tu cabello.</p>
+                    <div class="space-y-4">
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Permanente Rizo</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo<p class="text-sm text-gray-500">2h 30min</p></div><span class="font-bold accent-text">160€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">2h</p></div><span class="font-bold accent-text">120€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Corto<p class="text-sm text-gray-500">1h 15min</p></div><span class="font-bold accent-text">60€</span></div></div></div></div>
+                        <div class="service-item bg-[#F5F1E9] rounded-lg"><button class="w-full flex justify-between items-center p-4 text-left"><h4 class="font-semibold">Alisado con Queratina</h4><svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><div class="service-details px-4"><div class="border-t border-gray-200 pt-2"><div class="flex justify-between items-center py-2"><div>Pelo Largo<p class="text-sm text-gray-500">4h</p></div><span class="font-bold accent-text">260€</span></div><div class="flex justify-between items-center py-2 border-t border-gray-200"><div>Pelo Medio<p class="text-sm text-gray-500">4h</p></div><span class="font-bold accent-text">220€</span></div></div></div></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Hidratación Células Madres (Largo + Peinado)</h4><p class="text-sm text-gray-500">1h</p></div><p class="font-bold text-lg accent-text">30€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Hidratación Células Madres (Medio)</h4><p class="text-sm text-gray-500">1h</p></div><p class="font-bold text-lg accent-text">25€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Hidratación Moléculas Therapy (Largo)</h4><p class="text-sm text-gray-500">30 min</p></div><p class="font-bold text-lg accent-text">30€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Hidratación Moléculas Therapy (Medio)</h4><p class="text-sm text-gray-500">30 min</p></div><p class="font-bold text-lg accent-text">25€</p></div>
+                    </div>
+                </div>
+
+                <div id="depilacion" class="mb-12 scroll-mt-24">
+                    <h2 class="text-3xl font-bold border-b-2 border-[var(--border-warm)] pb-4 mb-6">Depilación y Estética Facial</h2>
+                    <p class="text-[#6B5E4F] mb-8 max-w-3xl">Servicios de depilación precisa para una piel suave y cuidada, tanto para mujer como para hombre.</p>
+                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-4">
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Cejas (cera o pinza)</h4><p class="text-sm text-gray-500">10 min</p></div><p class="font-bold text-lg accent-text">5€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Cejas con Color</h4><p class="text-sm text-gray-500">20 min</p></div><p class="font-bold text-lg accent-text">10€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Facial Completa</h4><p class="text-sm text-gray-500">20 min</p></div><p class="font-bold text-lg accent-text">15€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Patillas</h4><p class="text-sm text-gray-500">5 min</p></div><p class="font-bold text-lg accent-text">6€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Nariz</h4><p class="text-sm text-gray-500">5 min</p></div><p class="font-bold text-lg accent-text">5€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Orejas</h4><p class="text-sm text-gray-500">5 min</p></div><p class="font-bold text-lg accent-text">5€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Axilas</h4><p class="text-sm text-gray-500">10 min</p></div><p class="font-bold text-lg accent-text">10€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Ingle normal</h4><p class="text-sm text-gray-500">10 min</p></div><p class="font-bold text-lg accent-text">8€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Brasileña</h4><p class="text-sm text-gray-500">15 min</p></div><p class="font-bold text-lg accent-text">15€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Pubis Completo</h4><p class="text-sm text-gray-500">30 min</p></div><p class="font-bold text-lg accent-text">20€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Piernas Completas</h4><p class="text-sm text-gray-500">30 min</p></div><p class="font-bold text-lg accent-text">25€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Medias Piernas</h4><p class="text-sm text-gray-500">15 min</p></div><p class="font-bold text-lg accent-text">15€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Interglútea</h4><p class="text-sm text-gray-500">15 min</p></div><p class="font-bold text-lg accent-text">15€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg md:col-span-2"><h3 class="font-bold text-lg text-center w-full my-2">Depilación Masculina</h3></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Ingle Clásica (Hombre)</h4><p class="text-sm text-gray-500">15 min</p></div><p class="font-bold text-lg accent-text">12€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Pubis / Brasileña (Hombre)</h4><p class="text-sm text-gray-500">20 min</p></div><p class="font-bold text-lg accent-text">25€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg md:col-span-2"><div><h4 class="font-semibold">Integral Completa (Hombre)</h4><p class="text-sm text-gray-500">1h</p></div><p class="font-bold text-lg accent-text">40€</p></div>
+                    </div>
+                </div>
+
+                <div id="maquillaje" class="mb-12 scroll-mt-24">
+                    <h2 class="text-3xl font-bold border-b-2 border-[var(--border-warm)] pb-4 mb-6">Peinados y Maquillaje</h2>
+                    <p class="text-[#6B5E4F] mb-8 max-w-3xl">Realzamos tu belleza para cualquier ocasión especial, desde un evento casual hasta el día de tu boda. Pide tu cita y déjate asesorar.</p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Peinados para Eventos</h4></div><p class="font-bold text-lg accent-text">A medida</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Maquillaje de Boda</h4><p class="text-sm text-gray-500">1h aprox.</p></div><p class="font-bold text-lg accent-text">Consultar</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Maquillaje Casual / de Día</h4><p class="text-sm text-gray-500">1h</p></div><p class="font-bold text-lg accent-text">30€</p></div>
+                        <div class="flex justify-between items-center bg-[#F5F1E9] p-4 rounded-lg"><div><h4 class="font-semibold">Maquillaje de Noche</h4><p class="text-sm text-gray-500">1h</p></div><p class="font-bold text-lg accent-text">40€</p></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
+                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+            </div>
+            <div class="text-sm space-x-4 mb-4">
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
+            </div>
+            <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
+            <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+        const navbar = document.getElementById('navbar-sticky');
+        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+        
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetUrl = new URL(this.href);
+                const currentUrl = new URL(window.location.href);
+                if (targetUrl.pathname !== currentUrl.pathname) { return; }
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
+                if (!navbar.classList.contains('hidden')) { navbar.classList.add('hidden'); }
+            });
+        });
+
+        document.querySelectorAll('.service-item button').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Yoselin Magia y Color</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-color: #C09553;
+            --accent-color-dark: #B08447;
+            --text-dark: #3A3226;
+            --text-medium: #6B5E4F;
+            --bg-warm-white: #FDFBF6;
+            --bg-warm-beige: #F5F1E9;
+            --border-warm: #EAE3D9;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-warm-white);
+            color: var(--text-dark);
+        }
+        h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-tangerine { font-family: 'Tangerine', cursive; }
+        .accent-text { color: var(--accent-color); }
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(192, 149, 83, 0.3);
+        }
+        /* Corregido: Eliminada la regla innecesaria .aspect-h-1 */
+        .aspect-w-1 { position: relative; padding-bottom: 100%; }
+        .aspect-w-1 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
+    </style>
+</head>
+<body class="text-[#3A3226]">
+
+    <nav class="bg-[#FDFBF6]/80 backdrop-blur-md sticky w-full z-30 top-0 start-0 shadow-sm">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="index.html" class="flex items-center space-x-3">
+                <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
+            </a>
+            <div class="flex md:order-2">
+                <a href="index.html#contacto" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
+                    Pedir Cita
+                </a>
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <span class="sr-only">Abrir menú</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
+                </button>
+            </div>
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
+                    <li><a href="servicios.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Servicios</a></li>
+                    <li><a href="#" class="block py-2 px-3 accent-text font-bold rounded md:bg-transparent md:p-0" aria-current="page">Galería</a></li>
+                    <li><a href="index.html#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="bg-[#F5F1E9] pt-32 pb-16 sm:pt-40 sm:pb-24">
+            <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Nuestra Galería</h1>
+                    <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">La inspiración nace del trabajo bien hecho. Aquí tienes una muestra de los estilos, colores y sonrisas que creamos cada día en nuestro salón.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria-fotos" class="py-16 sm:py-20 bg-[#FDFBF6]">
+            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
+                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
+                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
+                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 sm:py-24 bg-[#F5F1E9]">
+            <div class="max-w-screen-md mx-auto px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">¿Te sientes inspirada?</h2>
+                <p class="mt-4 text-lg text-[#6B5E4F]">Si has visto un estilo que te encanta o quieres que te asesoremos para encontrar tu próximo look, no dudes en pedir cita. ¡Estamos aquí para ayudarte a brillar!</p>
+                <a href="index.html#contacto" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105">
+                    Reservar mi Cita
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
+        <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
+                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+            </div>
+            <div class="text-sm space-x-4 mb-4">
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
+                <span>|</span>
+                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
+            </div>
+            <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
+            <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+        const navbar = document.getElementById('navbar-sticky');
+        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetUrl = new URL(this.href);
+                const currentUrl = new URL(window.location.href);
+                if (targetUrl.pathname !== currentUrl.pathname) { return; }
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
+                if (!navbar.classList.contains('hidden')) { navbar.classList.add('hidden'); }
+            });
+        });
+    </script>
+</body>
+</html>
