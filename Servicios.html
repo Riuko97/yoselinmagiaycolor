@@ -167,5 +167,183 @@
             });
         });
     </script>
+    <style>
+    /* Estilos para que el chat se vea profesional y bonito */
+    .chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 350px;
+        max-width: 90%;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        z-index: 9999;
+        transition: all 0.3s ease-in-out;
+    }
+    .chat-header {
+        background: linear-gradient(45deg, #8A2BE2, #9932CC);
+        color: white;
+        padding: 16px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.1em;
+        border-bottom: 1px solid #ddd;
+    }
+    .chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        height: 350px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .message {
+        padding: 10px 15px;
+        border-radius: 20px;
+        max-width: 85%;
+        word-wrap: break-word;
+        line-height: 1.4;
+    }
+    .user-message {
+        background-color: #f1f0f0;
+        color: #333;
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+    }
+    .bot-message {
+        background-color: #e6d4f7;
+        color: #333;
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+    }
+    .chat-input {
+        display: flex;
+        border-top: 1px solid #ddd;
+        padding: 5px;
+    }
+    .chat-input input {
+        flex-grow: 1;
+        border: none;
+        padding: 12px;
+        outline: none;
+        font-size: 1em;
+    }
+    .chat-input button {
+        border: none;
+        background-color: #8A2BE2;
+        color: white;
+        padding: 0 20px;
+        border-radius: 8px;
+        margin: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    .chat-input button:hover {
+        background-color: #7B24C6;
+    }
+    .typing-indicator {
+        font-style: italic;
+        color: #999;
+        align-self: flex-start;
+        padding: 10px 15px;
+    }
+</style>
+
+<div class="chat-container">
+    <div class="chat-header">Asistente NEXMAIA</div>
+    <div class="chat-messages" id="chat-messages-container">
+        <div class="message bot-message">¡Hola! Soy NEXMAIA, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
+        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
+    </div>
+</div>
+
+<script>
+    // Se espera a que toda la página web esté cargada para ejecutar el script
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- PUNTO CLAVE: Conexión con n8n ---
+        const webhookURL = 'https://nexmaia.app.n8n.cloud/webhook-test/74291c39-642e-4fe6-bd56-80d229bedd45';
+
+        // --- Elementos del chat ---
+        const chatMessages = document.getElementById('chat-messages-container');
+        const userInput = document.getElementById('user-chat-input');
+        const sendButton = document.getElementById('send-chat-button');
+
+        // --- Función para enviar el mensaje ---
+        const sendMessage = async () => {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            // Muestra el mensaje del usuario en la ventana
+            addMessage(messageText, 'user-message');
+            userInput.value = '';
+
+            // Muestra el indicador de "escribiendo..."
+            const typingIndicator = addMessage('NEXMAIA está escribiendo...', 'typing-indicator');
+            
+            try {
+                // "Llama por teléfono" a n8n con el mensaje del usuario
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: messageText })
+                });
+
+                if (!response.ok) {
+                    throw new Error('La respuesta del servidor no fue OK.');
+                }
+
+                const data = await response.json();
+                
+                // Quita el indicador de "escribiendo..."
+                chatMessages.removeChild(typingIndicator);
+
+                // Muestra la respuesta de la IA si existe
+                if (data && data.respuesta_ia) {
+                    addMessage(data.respuesta_ia, 'bot-message');
+                } else {
+                    addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
+                }
+
+            } catch (error) {
+                console.error('Error al contactar con el asistente:', error);
+                if (typingIndicator && typingIndicator.parentNode) {
+                    chatMessages.removeChild(typingIndicator);
+                }
+                addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo en un momento.', 'bot-message');
+            }
+        };
+
+        // --- Función para añadir un mensaje a la ventana de chat ---
+        const addMessage = (text, className) => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', className);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            // Hace scroll automático para ver siempre el último mensaje
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageElement;
+        };
+
+        // --- Eventos para el usuario ---
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    });
+</script>
 </body>
 </html>
