@@ -37,9 +37,8 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(192, 149, 83, 0.3);
         }
-        /* Corregido: Eliminada la regla innecesaria .aspect-h-1 */
         .aspect-w-1 { position: relative; padding-bottom: 100%; }
-        .aspect-w-1 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; }
+        .aspect-w-1 > * { position: absolute; height: 100%; width: 100%; top: 0; right: 0; bottom: 0; left: 0; object-fit: cover; }
     </style>
 </head>
 <body class="text-[#3A3226]">
@@ -50,7 +49,8 @@
                 <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
             </a>
             <div class="flex md:order-2">
-                <a href="index.html#contacto" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
+                <!-- CAMBIO: Añadida la clase 'js-pedir-cita' para interactuar con el chat -->
+                <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
                     Pedir Cita
                 </a>
                 <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
@@ -61,7 +61,7 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
                     <li><a href="servicios.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Servicios</a></li>
-                    <li><a href="#" class="block py-2 px-3 accent-text font-bold rounded md:bg-transparent md:p-0" aria-current="page">Galería</a></li>
+                    <li><a href="galeria.html" class="block py-2 px-3 accent-text font-bold rounded md:bg-transparent md:p-0" aria-current="page">Galería</a></li>
                     <li><a href="index.html#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
                 </ul>
             </div>
@@ -81,10 +81,14 @@
         <section id="galeria-fotos" class="py-16 sm:py-20 bg-[#FDFBF6]">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
-                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
-                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
-                    <div class="aspect-w-1 bg-[#F5F1E9] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+A" alt="Trabajo de peluquería 1" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+B" alt="Trabajo de peluquería 2" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+C" alt="Trabajo de peluquería 3" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+D" alt="Trabajo de peluquería 4" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+E" alt="Trabajo de peluquería 5" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+F" alt="Trabajo de peluquería 6" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+G" alt="Trabajo de peluquería 7" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+H" alt="Trabajo de peluquería 8" class="rounded-lg object-cover"></div>
                 </div>
             </div>
         </section>
@@ -93,7 +97,8 @@
             <div class="max-w-screen-md mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold">¿Te sientes inspirada?</h2>
                 <p class="mt-4 text-lg text-[#6B5E4F]">Si has visto un estilo que te encanta o quieres que te asesoremos para encontrar tu próximo look, no dudes en pedir cita. ¡Estamos aquí para ayudarte a brillar!</p>
-                <a href="index.html#contacto" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105">
+                <!-- CAMBIO: Añadida la clase 'js-pedir-cita' para interactuar con el chat -->
+                <a href="#" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105 js-pedir-cita">
                     Reservar mi Cita
                 </a>
             </div>
@@ -103,15 +108,15 @@
     <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
         <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
-                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
+                <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
             </div>
             <div class="text-sm space-x-4 mb-4">
-                <a href="#" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
+                <a href="aviso-legal.html" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
+                <a href="politica-de-privacidad.html" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
                 <span>|</span>
-                <a href="#" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
+                <a href="politica-de-cookies.html" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
             </div>
             <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
@@ -119,21 +124,275 @@
     </footer>
 
     <script>
+        // --- SCRIPT GENERAL DE LA PÁGINA (MENÚ) ---
         const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
         const navbar = document.getElementById('navbar-sticky');
         menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
 
         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const targetUrl = new URL(this.href);
-                const currentUrl = new URL(window.location.href);
-                if (targetUrl.pathname !== currentUrl.pathname) { return; }
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
-                if (!navbar.classList.contains('hidden')) { navbar.classList.add('hidden'); }
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if(targetElement) { 
+                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                    if (navbar && !navbar.classList.contains('hidden')) { 
+                        navbar.classList.add('hidden'); 
+                    }
+                }
             });
         });
+     </script>
+    
+    <!-- =================================================================== -->
+    <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
+    <!-- =================================================================== -->
+
+    <!-- 1. ESTILOS DEL CHAT (CSS) -->
+    <style>
+        .chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-width: 90%;
+            height: 500px;
+            border: 1px solid var(--border-warm);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-warm-white);
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .chat-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .chat-header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 16px;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 85%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: var(--bg-warm-beige);
+            color: var(--text-dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: var(--accent-color);
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid var(--border-warm);
+            padding: 5px;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            border: none;
+            padding: 12px;
+            outline: none;
+            font-size: 1em;
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+        .chat-input button {
+            border: none;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0 20px;
+            border-radius: 8px;
+            margin: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .chat-input button:hover {
+            background-color: var(--accent-color-dark);
+        }
+        .typing-indicator {
+            font-style: italic;
+            color: var(--text-medium);
+            align-self: flex-start;
+            padding: 10px 15px;
+        }
+        .chat-toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(192, 149, 83, 0.4);
+            cursor: pointer;
+            z-index: 9998;
+            transition: all 0.3s ease-in-out;
+        }
+        .chat-toggle-button:hover {
+            background-color: var(--accent-color-dark);
+            transform: scale(1.1);
+        }
+    </style>
+
+    <!-- 2. ESTRUCTURA DEL CHAT (HTML) -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header" id="chat-header">
+            <span>Asistente NEXMAIA</span>
+            <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <div class="message bot-message">¡Hola! Soy NEXMAIA, tu asistente virtual. ¿Cómo puedo ayudarte?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
+            <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
+        </div>
+    </div>
+
+    <div class="chat-toggle-button" id="chat-toggle-button">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+    </div>
+
+    <!-- 3. LÓGICA DEL CHAT (JAVASCRIPT) -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- PUNTO CLAVE: Conexión con n8n ---
+        // RECUERDA: Reemplaza esta URL de prueba por tu URL de PRODUCCIÓN de n8n.
+        const webhookURL = 'https://nexmaia.app.n8n.cloud/webhook/74291c39-642e-4fe6-bd56-80d229bedd45';
+
+        // --- Elementos del DOM (las piezas del chat) ---
+        const chatContainer = document.getElementById('chat-container');
+        const chatToggleButton = document.getElementById('chat-toggle-button');
+        const closeChatBtn = document.getElementById('close-chat-btn');
+        const chatMessages = document.getElementById('chat-messages-container');
+        const userInput = document.getElementById('user-chat-input');
+        const sendButton = document.getElementById('send-chat-button');
+        const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
+
+        // --- Funciones para controlar la visibilidad del chat ---
+        const openChat = () => {
+            chatContainer.classList.add('visible');
+            chatToggleButton.style.opacity = '0';
+            chatToggleButton.style.pointerEvents = 'none';
+            userInput.focus();
+        };
+
+        const closeChat = () => {
+            chatContainer.classList.remove('visible');
+            chatToggleButton.style.opacity = '1';
+            chatToggleButton.style.pointerEvents = 'auto';
+        };
+
+        // --- Eventos para abrir y cerrar el chat ---
+        chatToggleButton.addEventListener('click', openChat);
+        closeChatBtn.addEventListener('click', closeChat);
+
+        // --- Función para enviar el mensaje a n8n ---
+        const sendMessage = async () => {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            addMessage(messageText, 'user-message');
+            userInput.value = '';
+            const typingIndicator = addMessage('NEXMAIA está escribiendo...', 'typing-indicator');
+            
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: messageText })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok.');
+                const data = await response.json();
+                
+                chatMessages.removeChild(typingIndicator);
+
+                if (data && data.respuesta_ia) {
+                    addMessage(data.respuesta_ia, 'bot-message');
+                } else {
+                    addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
+                }
+            } catch (error) {
+                console.error('Error al contactar con el asistente:', error);
+                if(typingIndicator && typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
+                addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
+            }
+        };
+
+        // --- Función para añadir un mensaje a la ventana del chat ---
+        const addMessage = (text, className) => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', className);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageElement;
+        };
+
+        // --- Eventos para el input del usuario ---
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') sendMessage();
+        });
+
+        // --- Eventos para los botones "Pedir Cita" ---
+        pedirCitaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que el enlace navegue
+                openChat();
+                // Opcional: Escribe un mensaje inicial en el chat
+                setTimeout(() => {
+                     userInput.value = 'Hola, me gustaría pedir una cita.';
+                     userInput.focus();
+                }, 300); // Pequeña espera para que el chat se abra
+            });
+        });
+    });
     </script>
+    <!-- =================================================================== -->
+    <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
+    <!-- =================================================================== -->
 </body>
 </html>

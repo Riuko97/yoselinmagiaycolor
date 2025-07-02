@@ -64,7 +64,8 @@
                 <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
             </a>
             <div class="flex md:order-2">
-                <a href="#contacto" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
+                <!-- CAMBIO: Añadida la clase 'js-pedir-cita' para interactuar con el chat -->
+                <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
                     Pedir Cita
                 </a>
                 <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
@@ -101,23 +102,20 @@
                     <h2 class="text-3xl md:text-4xl font-bold">Conoce Nuestro Espacio</h2>
                     <p class="mt-4 text-lg text-[#6B5E4F]">Hemos creado un ambiente relajante y profesional para que te sientas como en casa. Un lugar donde la belleza y el bienestar se encuentran.</p>
                 </div>
-                <!-- CAMBIO: Rejilla asimétrica con vídeo a la izquierda y fotos a la derecha -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                    <!-- Columna del Video Principal -->
                     <div class="w-full h-96 lg:h-[32rem] rounded-lg shadow-lg overflow-hidden bg-black">
-                         <video src="fotos_pelu\WhatsApp Video 2025-07-01 at 16.33.29.mp4" 
-                               alt="Video del ambiente del salón" 
-                               class="w-full h-full object-cover" 
-                               autoplay loop muted playsinline>
-                        </video>
+                         <video src="fotos_pelu/WhatsApp Video 2025-07-01 at 16.33.29.mp4" 
+                                alt="Video del ambiente del salón" 
+                                class="w-full h-full object-cover" 
+                                autoplay loop muted playsinline>
+                         </video>
                     </div>
-                    <!-- Columna de las Imágenes Secundarias -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                         <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                            <img src="fotos_pelu\desde el fondo.jfif" alt="Vista amplia del interior del salón de peluquería" class="w-full h-full object-cover">
+                            <img src="fotos_pelu/desde el fondo.jfif" alt="Vista amplia del interior del salón de peluquería" class="w-full h-full object-cover">
                         </div>
                         <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                           <img src="fotos_pelu\toda.jfif" alt="Zona de tocadores y espejos del salón" class="w-full h-full object-cover">
+                           <img src="fotos_pelu/toda.jfif" alt="Zona de tocadores y espejos del salón" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -137,7 +135,8 @@
                     <a href="servicios.html#tratamientos" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Tratamientos y Formas</h3><p class="mt-2 text-[#6B5E4F]">Recupera la salud de tu cabello o consigue un liso o rizo perfecto.</p><p class="mt-4 text-xl font-bold accent-text">Desde 25€</p></a>
                     <a href="servicios.html#depilacion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Depilación y Estética</h3><p class="mt-2 text-[#6B5E4F]">Servicios de depilación facial y corporal con la máxima precisión.</p><p class="mt-4 text-xl font-bold accent-text">Desde 5€</p></a>
                     <a href="servicios.html#maquillaje" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Maquillaje Social</h3><p class="mt-2 text-[#6B5E4F]">Luce radiante en tus eventos más especiales.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <div class="bg-[#FDFBF6] p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-[var(--border-warm)]"><h3 class="text-2xl font-bold">Pide Tu Cita</h3><p class="mt-2 text-[#6B5E4F]">¿Lista para un cambio? Contacta con nosotros y reserva tu momento.</p><a href="#contacto" class="mt-4 inline-block btn-accent font-semibold text-sm px-4 py-2 rounded-lg">Reservar Ahora</a></div>
+                    <!-- CAMBIO: Añadida la clase 'js-pedir-cita' al botón para interactuar con el chat -->
+                    <div class="bg-[#FDFBF6] p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-[var(--border-warm)]"><h3 class="text-2xl font-bold">Pide Tu Cita</h3><p class="mt-2 text-[#6B5E4F]">¿Lista para un cambio? Contacta con nosotros y reserva tu momento.</p><a href="#" class="mt-4 inline-block btn-accent font-semibold text-sm px-4 py-2 rounded-lg js-pedir-cita">Reservar Ahora</a></div>
                 </div>
             </div>
         </section>
@@ -152,8 +151,12 @@
                 <div class="mt-16 relative">
                     <div id="carousel-container" class="overflow-hidden">
                         <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-                            <div class="carousel-item p-2"><div class="aspect-square bg-[#FDFBF6] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div></div>
-                            <div class="carousel-item p-2"><div class="aspect-square bg-[#FDFBF6] rounded-lg flex items-center justify-center border-2 border-dashed border-[var(--border-warm)]"><div class="text-center text-gray-400"><svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><p class="text-sm mt-2">Tu trabajo aquí</p></div></div></div>
+                            <!-- Items del carrusel -->
+                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+1" alt="Ejemplo de peinado 1" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/FDFBF6/C09553?text=Look+2" alt="Ejemplo de peinado 2" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+3" alt="Ejemplo de peinado 3" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/FDFBF6/C09553?text=Look+4" alt="Ejemplo de peinado 4" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+5" alt="Ejemplo de peinado 5" class="rounded-lg"></div>
                         </div>
                     </div>
                     <button id="prevBtn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 shadow-md"><svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
@@ -167,15 +170,15 @@
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold">Contacta y Pide tu Cita</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Estamos deseando conocerte. Llámanos o ven a visitarnos a nuestro salón en Rubí. <br>O si lo prefieres, pide tu cita con nuestro <strong class="accent-text">asistente virtual por WhatsApp</strong>.</p>
+                    <p class="mt-4 text-lg text-[#6B5E4F]">Estamos deseando conocerte. Llámanos o ven a visitarnos a nuestro salón en Rubí. <br>O si lo prefieres, pide tu cita con nuestro <strong class="accent-text">asistente virtual NEXMAIA</strong>.</p>
                 </div>
                 <div class="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8 border border-gray-200">
                     <div>
                         <h3 class="text-xl font-bold mb-4">Información de Contacto</h3>
                         <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Carrer de Sabadell, 53, 08191 Rubí, Barcelona</p>
                         <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg> +34 935 88 76 86</p>
-                        <a href="#" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg>Síguenos en Facebook</a>
-                        <a href="#" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>Síguenos en Instagram</a>
+                        <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg>Síguenos en Facebook</a>
+                        <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>Síguenos en Instagram</a>
                         <h3 class="text-xl font-bold mt-8 mb-4">Nuestro Horario</h3>
                         <p><strong>Martes a Jueves:</strong> 9:30 - 13:00 y 15:00 - 20:00</p>
                         <p><strong>Viernes:</strong> 9:30 - 20:00 (intensivo)</p>
@@ -194,8 +197,8 @@
     <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
         <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
-                <a href="#" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
+                <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
             </div>
             <div class="text-sm space-x-4 mb-4">
                 <a href="aviso-legal.html" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
@@ -209,62 +212,321 @@
         </div>
     </footer>
 
+    <!-- =================================================================== -->
+    <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
+    <!-- =================================================================== -->
+
+    <!-- 1. ESTILOS DEL CHAT (CSS) -->
+    <style>
+        .chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            max-width: 90%;
+            height: 500px;
+            border: 1px solid var(--border-warm);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-warm-white);
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .chat-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .chat-header {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 16px;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .message {
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 85%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+        .user-message {
+            background-color: var(--bg-warm-beige);
+            color: var(--text-dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        .bot-message {
+            background-color: var(--accent-color);
+            color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid var(--border-warm);
+            padding: 5px;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            border: none;
+            padding: 12px;
+            outline: none;
+            font-size: 1em;
+            background-color: transparent;
+            color: var(--text-dark);
+        }
+        .chat-input button {
+            border: none;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0 20px;
+            border-radius: 8px;
+            margin: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .chat-input button:hover {
+            background-color: var(--accent-color-dark);
+        }
+        .typing-indicator {
+            font-style: italic;
+            color: var(--text-medium);
+            align-self: flex-start;
+            padding: 10px 15px;
+        }
+        .chat-toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(192, 149, 83, 0.4);
+            cursor: pointer;
+            z-index: 9998;
+            transition: all 0.3s ease-in-out;
+        }
+        .chat-toggle-button:hover {
+            background-color: var(--accent-color-dark);
+            transform: scale(1.1);
+        }
+    </style>
+
+    <!-- 2. ESTRUCTURA DEL CHAT (HTML) -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header" id="chat-header">
+            <span>Asistente NEXMAIA</span>
+            <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <div class="message bot-message">¡Hola! Soy NEXMAIA, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
+            <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
+        </div>
+    </div>
+
+    <div class="chat-toggle-button" id="chat-toggle-button">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+    </div>
+
+    <!-- 3. LÓGICA DEL CHAT (JAVASCRIPT) -->
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- PUNTO CLAVE: Conexión con n8n ---
+        // RECUERDA: Reemplaza esta URL de prueba por tu URL de PRODUCCIÓN de n8n.
+        const webhookURL = 'https://nexmaia.app.n8n.cloud/webhook/74291c39-642e-4fe6-bd56-80d229bedd45';
+
+        // --- Elementos del DOM (las piezas del chat) ---
+        const chatContainer = document.getElementById('chat-container');
+        const chatToggleButton = document.getElementById('chat-toggle-button');
+        const closeChatBtn = document.getElementById('close-chat-btn');
+        const chatMessages = document.getElementById('chat-messages-container');
+        const userInput = document.getElementById('user-chat-input');
+        const sendButton = document.getElementById('send-chat-button');
+        const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
+
+        // --- Funciones para controlar la visibilidad del chat ---
+        const openChat = () => {
+            chatContainer.classList.add('visible');
+            chatToggleButton.style.opacity = '0';
+            chatToggleButton.style.pointerEvents = 'none';
+            userInput.focus();
+        };
+
+        const closeChat = () => {
+            chatContainer.classList.remove('visible');
+            chatToggleButton.style.opacity = '1';
+            chatToggleButton.style.pointerEvents = 'auto';
+        };
+
+        // --- Eventos para abrir y cerrar el chat ---
+        chatToggleButton.addEventListener('click', openChat);
+        closeChatBtn.addEventListener('click', closeChat);
+
+        // --- Función para enviar el mensaje a n8n ---
+        const sendMessage = async () => {
+            const messageText = userInput.value.trim();
+            if (messageText === '') return;
+
+            addMessage(messageText, 'user-message');
+            userInput.value = '';
+            const typingIndicator = addMessage('NEXMAIA está escribiendo...', 'typing-indicator');
+            
+            try {
+                const response = await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: messageText })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok.');
+                const data = await response.json();
+                
+                chatMessages.removeChild(typingIndicator);
+
+                if (data && data.respuesta_ia) {
+                    addMessage(data.respuesta_ia, 'bot-message');
+                } else {
+                    addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
+                }
+            } catch (error) {
+                console.error('Error al contactar con el asistente:', error);
+                if(typingIndicator && typingIndicator.parentNode) chatMessages.removeChild(typingIndicator);
+                addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
+            }
+        };
+
+        // --- Función para añadir un mensaje a la ventana del chat ---
+        const addMessage = (text, className) => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', className);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageElement;
+        };
+
+        // --- Eventos para el input del usuario ---
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') sendMessage();
+        });
+
+        // --- Eventos para los botones "Pedir Cita" ---
+        pedirCitaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que el enlace navegue
+                openChat();
+                // Opcional: Escribe un mensaje inicial en el chat
+                setTimeout(() => {
+                     userInput.value = 'Hola, me gustaría pedir una cita.';
+                     userInput.focus();
+                }, 300); // Pequeña espera para que el chat se abra
+            });
+        });
+        
+        // --- SCRIPT GENERAL DE LA PÁGINA (MENÚ, CAROUSEL, ETC) ---
         const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
         const navbar = document.getElementById('navbar-sticky');
         menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
 
         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const targetUrl = new URL(this.href);
-                const currentUrl = new URL(window.location.href);
-                if (targetUrl.pathname !== currentUrl.pathname) { return; }
-                e.preventDefault();
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) { targetElement.scrollIntoView({ behavior: 'smooth' }); }
-                if (!navbar.classList.contains('hidden')) { navbar.classList.add('hidden'); }
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if(targetElement) { 
+                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                    if (navbar && !navbar.classList.contains('hidden')) { 
+                        navbar.classList.add('hidden'); 
+                    }
+                }
             });
         });
 
         // Carousel Logic
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
         const track = document.getElementById('carousel-track');
         if (track) {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             let currentIndex = 0;
             const items = Array.from(track.children);
             const totalItems = items.length;
-            items.forEach(item => track.appendChild(item.cloneNode(true)));
-            
-            const itemsToShow = window.innerWidth < 768 ? 2 : 4;
+            if (totalItems > 1) {
+              const cloneItems = items.map(item => item.cloneNode(true));
+              cloneItems.forEach(clone => track.appendChild(clone));
+              
+              const itemsToShow = window.innerWidth < 768 ? 2 : 4;
 
-            function updateCarousel() {
-                track.style.transition = 'transform 0.5s ease-in-out';
-                track.style.transform = `translateX(-${currentIndex * (100 / itemsToShow)}%)`;
-            }
+              function updateCarousel() {
+                  track.style.transform = `translateX(-${currentIndex * (100 / itemsToShow)}%)`;
+              }
+              
+              function moveToNext() {
+                  currentIndex++;
+                  track.style.transition = 'transform 0.5s ease-in-out';
+                  if (currentIndex >= totalItems) {
+                      setTimeout(() => {
+                          track.style.transition = 'none';
+                          track.style.transform = `translateX(0%)`;
+                          setTimeout(() => {
+                            currentIndex = 1;
+                            track.style.transition = 'transform 0.5s ease-in-out';
+                            updateCarousel();
+                          }, 50);
+                      }, 500);
+                  }
+                  updateCarousel();
+              }
+              
+              nextBtn.addEventListener('click', moveToNext);
+              
+              prevBtn.addEventListener('click', () => {
+                  if (currentIndex <= 0) return;
+                  currentIndex--;
+                  updateCarousel();
+              });
 
-            function moveToNext() {
-                currentIndex++;
-                if (currentIndex >= totalItems) {
-                    currentIndex = 0;
-                    track.style.transition = 'none';
-                    track.style.transform = `translateX(0%)`;
-                    setTimeout(() => {
-                        track.style.transition = 'transform 0.5s ease-in-out';
-                        moveToNext();
-                    }, 50);
-                } else {
-                    updateCarousel();
-                }
+              setInterval(moveToNext, 3000);
             }
-            
-            nextBtn.addEventListener('click', moveToNext);
-            prevBtn.addEventListener('click', () => {
-                if (currentIndex <= 0) return;
-                currentIndex--;
-                updateCarousel();
-            });
         }
+    });
     </script>
+    <!-- =================================================================== -->
+    <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
+    <!-- =================================================================== -->
 </body>
 </html>

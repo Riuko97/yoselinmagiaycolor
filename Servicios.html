@@ -184,35 +184,6 @@
         </div>
     </footer>
 
-    <script>
-        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-        const navbar = document.getElementById('navbar-sticky');
-        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-        
-        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    if(targetElement) { 
-                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
-                    }
-                    if (navbar && !navbar.classList.contains('hidden')) { 
-                        navbar.classList.add('hidden'); 
-                    }
-                }
-            });
-        });
-
-        document.querySelectorAll('.service-item button').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.parentElement;
-                item.classList.toggle('open');
-            });
-        });
-    </script>
-    
     <!-- =================================================================== -->
     <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
     <!-- =================================================================== -->
