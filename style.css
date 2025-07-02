@@ -395,4 +395,42 @@ h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
             background-color: var(--accent-color-dark);
             transform: scale(1.1);
         }
-    
+        :root {
+            --accent-color: #C09553;
+            --accent-color-dark: #B08447;
+            --text-dark: #3A3226;
+            --text-medium: #6B5E4F;
+            --bg-warm-white: #FDFBF6;
+            --bg-warm-beige: #F5F1E9;
+            --border-warm: #EAE3D9;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-warm-white);
+            color: var(--text-dark);
+        }
+        h1, h2, h3, .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-tangerine { font-family: 'Tangerine', cursive; }
+        .accent-text { color: var(--accent-color); }
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .btn-accent:hover {
+            background-color: var(--accent-color-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(192, 149, 83, 0.3);
+        }
+        .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .service-item.open .service-details {
+            max-height: 500px; /* Ajusta este valor si el contenido es más grande */
+        }
+        .service-item.open svg {
+            transform: rotate(180deg);
+        }
