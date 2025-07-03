@@ -50,14 +50,14 @@
         <section id="galeria-fotos" class="py-16 sm:py-20 bg-[#FDFBF6]">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 1" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 2" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 3" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 4" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 5" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 6" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 7" class="rounded-lg object-cover"></div>
-                    <div class="aspect-w-1"><img src="" alt="Trabajo de peluquería 8" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+A" alt="Trabajo de peluquería 1" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+B" alt="Trabajo de peluquería 2" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+C" alt="Trabajo de peluquería 3" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+D" alt="Trabajo de peluquería 4" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+E" alt="Trabajo de peluquería 5" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+F" alt="Trabajo de peluquería 6" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+G" alt="Trabajo de peluquería 7" class="rounded-lg object-cover"></div>
+                    <div class="aspect-w-1"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+H" alt="Trabajo de peluquería 8" class="rounded-lg object-cover"></div>
                 </div>
             </div>
         </section>
@@ -92,29 +92,6 @@
         </div>
     </footer>
 
-    <script>
-        // --- SCRIPT GENERAL DE LA PÁGINA (MENÚ) ---
-        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-        const navbar = document.getElementById('navbar-sticky');
-        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-
-        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(href);
-                    if(targetElement) { 
-                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
-                    }
-                    if (navbar && !navbar.classList.contains('hidden')) { 
-                        navbar.classList.add('hidden'); 
-                    }
-                }
-            });
-        });
-     </script>
-     
     <!-- =================================================================== -->
     <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
     <!-- =================================================================== -->
@@ -138,7 +115,7 @@
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
     </div>
 
-    <!-- LÓGICA DEL CHAT (JAVASCRIPT) -->
+    <!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // --- SCRIPTS GENERALES DE LA PÁGINA ---
@@ -151,6 +128,10 @@
         document.querySelectorAll('a[href*="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
+                if (href === '#') {
+                    e.preventDefault();
+                    return;
+                }
                 if (href.startsWith('#')) {
                     e.preventDefault();
                     const targetElement = document.querySelector(href);
@@ -161,13 +142,6 @@
                         navbar.classList.add('hidden'); 
                     }
                 }
-            });
-        });
-
-        document.querySelectorAll('.service-item button').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.parentElement;
-                item.classList.toggle('open');
             });
         });
 
@@ -253,6 +227,5 @@
     <!-- =================================================================== -->
     <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
     <!-- =================================================================== -->
-
 </body>
 </html>
