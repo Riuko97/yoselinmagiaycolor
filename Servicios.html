@@ -145,7 +145,7 @@
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
         </div>
     </footer>
-    <!-- =================================================================== -->
+       <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
 <!-- =================================================================== -->
 
@@ -156,29 +156,7 @@
         <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
     </div>
     <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Gemi, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
-        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
-    </div>
-</div>
-
-<div class="chat-toggle-button" id="chat-toggle-button">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-</div>
-<!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
-<!-- =================================================================== -->
-
-<!-- ESTRUCTURA DEL CHAT (HTML) -->
-<div class="chat-container" id="chat-container">
-    <div class="chat-header" id="chat-header">
-        <span>Asistente Yoselin</span>
-        <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
-    </div>
-    <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Gemi, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+        <div class="message bot-message">¡Hola! Soy Nexmaia, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
     </div>
     <div class="chat-input">
         <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
@@ -267,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         addMessage(messageText, 'user-message');
         userInput.value = '';
-        const typingIndicator = addMessage('Gemi está escribiendo...', 'typing-indicator');
+        const typingIndicator = addMessage('Nexmaia está escribiendo...', 'typing-indicator');
 
         try {
             const response = await fetch(webhookUrl, {
@@ -330,8 +308,5 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
 <!-- =================================================================== -->
-
-
-
 </body>
 </html>
