@@ -93,7 +93,7 @@
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
         </div>
     </footer>
-    <!-- =================================================================== -->
+       <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
 <!-- =================================================================== -->
 
@@ -104,7 +104,7 @@
         <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
     </div>
     <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Gemi, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+        <div class="message bot-message">¡Hola! Soy Nexmaia, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
     </div>
     <div class="chat-input">
         <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         addMessage(messageText, 'user-message');
         userInput.value = '';
-        const typingIndicator = addMessage('Gemi está escribiendo...', 'typing-indicator');
+        const typingIndicator = addMessage('Nexmaia está escribiendo...', 'typing-indicator');
 
         try {
             const response = await fetch(webhookUrl, {
