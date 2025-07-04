@@ -169,6 +169,30 @@
 </div>
 
 <!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
+<!-- =================================================================== -->
+<!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
+<!-- =================================================================== -->
+
+<!-- ESTRUCTURA DEL CHAT (HTML) -->
+<div class="chat-container" id="chat-container">
+    <div class="chat-header" id="chat-header">
+        <span>Asistente Yoselin</span>
+        <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
+    </div>
+    <div class="chat-messages" id="chat-messages-container">
+        <div class="message bot-message">¡Hola! Soy Gemi, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
+        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
+    </div>
+</div>
+
+<div class="chat-toggle-button" id="chat-toggle-button">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+</div>
+
+<!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // --- SCRIPTS GENERALES DE LA PÁGINA ---
@@ -198,8 +222,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- LÓGICA DEL CHAT CORREGIDA ---
-    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/Yoselinchatbot'; // TU URL DE N8N
+    // --- LÓGICA DEL CHAT CORREGIDA Y DEFINITIVA ---
+    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/55990cfc-81a2-4077-a38a-f2b057fd5179';
     const chatContainer = document.getElementById('chat-container');
     const chatToggleButton = document.getElementById('chat-toggle-button');
     const closeChatBtn = document.getElementById('close-chat-btn');
@@ -208,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendButton = document.getElementById('send-chat-button');
     const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
 
-    // Gestión de la sesión del chat
+    // Gestión de la sesión del chat para que el bot recuerde la conversación
     let sessionId = localStorage.getItem('chatSessionId');
     if (!sessionId) {
         sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
@@ -252,9 +276,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(webhookUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                // ESTA ES LA PARTE CORREGIDA Y MÁS IMPORTANTE
                 body: JSON.stringify({
-                    chatInput: messageText, // Clave correcta para n8n
-                    sessionId: sessionId    // Envío del ID de sesión
+                    chatInput: messageText, // La clave correcta que el nodo "If" espera
+                    sessionId: sessionId    // El ID para que el bot recuerde la conversación
                 })
             });
 
@@ -286,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sendButton.addEventListener('click', handleSendMessage);
     userInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Evita el comportamiento por defecto del Enter
+            event.preventDefault();
             handleSendMessage();
         }
     });
@@ -306,6 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
 <!-- =================================================================== -->
+
 
 </body>
 </html>
