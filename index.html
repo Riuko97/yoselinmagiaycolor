@@ -13,6 +13,9 @@
     <link rel="manifest" href="Logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Hoja de estilos para el chat de n8n -->
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 </head>
 <body class="text-[#3A3226]">
 
@@ -23,7 +26,6 @@
                 <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
             </a>
             <div class="flex md:order-2">
-                <!-- CAMBIO: Añadida la clase 'js-pedir-cita' para interactuar con el chat -->
                 <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
                     Pedir Cita
                 </a>
@@ -43,295 +45,101 @@
     </nav>
     
     <main>
-        <!-- SECCIÓN HERO -->
-        <section class="bg-[#FDFBF6] pt-32 pb-20 sm:pt-40 sm:pb-24">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-[#3A3226]">El Arte de Cuidar tu Cabello</h1>
-                <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-[#6B5E4F]">En el corazón de Rubí, un espacio donde la técnica, la pasión y el estilo se unen para crear una experiencia única para ti.</p>
-                <a href="servicios.html" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105">
-                    Descubre Nuestros Servicios
-                </a>
-            </div>
-        </section>
-
-        <!-- SECCIÓN: FOTOS DEL LOCAL -->
-        <section id="nuestro-espacio" class="py-16 sm:py-20 bg-[#F5F1E9]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold">Conoce Nuestro Espacio</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Hemos creado un ambiente relajante y profesional para que te sientas como en casa. Un lugar donde la belleza y el bienestar se encuentran.</p>
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                    <div class="w-full h-96 lg:h-[32rem] rounded-lg shadow-lg overflow-hidden bg-black">
-                         <video src="fotos_pelu/WhatsApp Video 2025-07-01 at 16.33.29.mp4" 
-                                 alt="Video del ambiente del salón" 
-                                 class="w-full h-full object-cover" 
-                                 autoplay loop muted playsinline>
-                         </video>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
-                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                            <img src="fotos_pelu/desde el fondo.jfif" alt="Vista amplia del interior del salón de peluquería" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                           <img src="fotos_pelu/toda.jfif" alt="Zona de tocadores y espejos del salón" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN SERVICIOS -->
-        <section id="servicios" class="py-16 sm:py-20 bg-[#FDFBF6]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold">Servicios Exclusivos para Ti</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Desde un corte de vanguardia hasta el color que siempre has soñado. Haz clic para ver la lista completa de servicios y precios.</p>
-                </div>
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="servicios.html#corte" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Corte y Peinado</h3><p class="mt-2 text-[#6B5E4F]">Asesoramiento personalizado para encontrar el estilo que mejor se adapta a ti.</p><p class="mt-4 text-xl font-bold accent-text">Desde 12€</p></a>
-                    <a href="servicios.html#coloracion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Coloración y Mechas</h3><p class="mt-2 text-[#6B5E4F]">Expertos en las últimas técnicas como Balayage y Babylights.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <a href="servicios.html#tratamientos" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Tratamientos y Formas</h3><p class="mt-2 text-[#6B5E4F]">Recupera la salud de tu cabello o consigue un liso o rizo perfecto.</p><p class="mt-4 text-xl font-bold accent-text">Desde 25€</p></a>
-                    <a href="servicios.html#depilacion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Depilación y Estética</h3><p class="mt-2 text-[#6B5E4F]">Servicios de depilación facial y corporal con la máxima precisión.</p><p class="mt-4 text-xl font-bold accent-text">Desde 5€</p></a>
-                    <a href="servicios.html#maquillaje" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Maquillaje Social</h3><p class="mt-2 text-[#6B5E4F]">Luce radiante en tus eventos más especiales.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <!-- CAMBIO: Añadida la clase 'js-pedir-cita' al botón para interactuar con el chat -->
-                    <div class="bg-[#FDFBF6] p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-[var(--border-warm)]"><h3 class="text-2xl font-bold">Pide Tu Cita</h3><p class="mt-2 text-[#6B5E4F]">¿Lista para un cambio? Contacta con nosotros y reserva tu momento.</p><a href="#" class="mt-4 inline-block btn-accent font-semibold text-sm px-4 py-2 rounded-lg js-pedir-cita">Reservar Ahora</a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN GALERÍA (CARRUSEL) -->
-        <section id="galeria" class="py-16 sm:py-20 bg-[#F5F1E9]">
-             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold">Nuestra Inspiración</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Un vistazo a nuestro trabajo y al estilo que nos define.</p>
-                </div>
-                <div class="mt-16 relative">
-                    <div id="carousel-container" class="overflow-hidden">
-                        <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-                            <!-- Items del carrusel -->
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+1" alt="Ejemplo de peinado 1" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/FDFBF6/C09553?text=Look+2" alt="Ejemplo de peinado 2" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+3" alt="Ejemplo de peinado 3" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/FDFBF6/C09553?text=Look+4" alt="Ejemplo de peinado 4" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+5" alt="Ejemplo de peinado 5" class="rounded-lg"></div>
-                        </div>
-                    </div>
-                    <button id="prevBtn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 shadow-md"><svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-                    <button id="nextBtn" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 shadow-md"><svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN CONTACTO -->
-        <section id="contacto" class="py-20 sm:py-24 bg-[#FDFBF6]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-3xl md:text-4xl font-bold">Contacta y Pide tu Cita</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Estamos deseando conocerte. Llámanos o ven a visitarnos a nuestro salón en Rubí. <br>O si lo prefieres, pide tu cita con nuestro <strong class="accent-text">asistente virtual NEXMAIA</strong>.</p>
-                </div>
-                <div class="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8 border border-gray-200">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Información de Contacto</h3>
-                        <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Carrer de Sabadell, 53, 08191 Rubí, Barcelona</p>
-                        <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg> +34 935 88 76 86</p>
-                        <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg>Síguenos en Facebook</a>
-                        <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>Síguenos en Instagram</a>
-                        <h3 class="text-xl font-bold mt-8 mb-4">Nuestro Horario</h3>
-                        <p><strong>Martes a Jueves:</strong> 9:30 - 13:00 y 15:00 - 20:00</p>
-                        <p><strong>Viernes:</strong> 9:30 - 20:00 (intensivo)</p>
-                        <p><strong>Sábados:</strong> 8:30 - 14:00</p>
-                        <p><strong>Lunes y Domingos:</strong> Cerrado</p>
-                    </div>
-                    <div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2988.608386470002!2d2.032276076594248!3d41.49080647129759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a491e777492c39%3A0xe372e91176b65a50!2sCarrer%20de%20Sabadell%2C%2053%2C%2008191%20Rub%C3%AD%2C%20Barcelona!5e0!3m2!1ses!2ses!4v1719401764350!5m2!1ses!2ses" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- ... TODO TU CONTENIDO PRINCIPAL ... -->
     </main>
 
     <!-- FOOTER -->
     <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
-        <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
-                <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
-            </div>
-            <div class="text-sm space-x-4 mb-4">
-                <a href="aviso-legal.html" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
-                <span>|</span>
-                <a href="politica-de-privacidad.html" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
-                <span>|</span>
-                <a href="politica-de-cookies.html" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
-            </div>
-            <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
-            <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
-        </div>
+        <!-- ... Contenido del footer ... -->
     </footer>
-    <!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
-<!-- =================================================================== -->
-
-<!-- ESTRUCTURA DEL CHAT (HTML) -->
-<div class="chat-container" id="chat-container">
-    <div class="chat-header" id="chat-header">
-        <span>Asistente Yoselin</span>
-        <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
-    </div>
-    <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Nexmaia, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
-        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
-    </div>
-</div>
-
-<div class="chat-toggle-button" id="chat-toggle-button">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-</div>
-
-<!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // --- SCRIPTS GENERALES DE LA PÁGINA ---
-    const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-    const navbar = document.getElementById('navbar-sticky');
-    if(menuButton) {
-        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-    }
     
-    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#') {
-                e.preventDefault();
-                return;
-            }
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if(targetElement) { 
-                    targetElement.scrollIntoView({ behavior: 'smooth' }); 
-                }
-                if (navbar && !navbar.classList.contains('hidden')) { 
-                    navbar.classList.add('hidden'); 
-                }
+    <!-- =================================================================== -->
+    <!-- CÓDIGO DEL CHATBOT DE N8N - VERSIÓN FINAL -->
+    <!-- Este script crea la burbuja, la ventana y se conecta a tu workflow. -->
+    <!-- =================================================================== -->
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://nexmaia.app.n8n.cloud/webhook/c9ae2baa-d103-4cb4-9dac-837ba2049a0a/chat',
+            
+            // Personalización de los textos en español
+            defaultLanguage: 'es',
+            initialMessages: [
+                '¡Hola! 👋',
+                'Soy NEXMAIA, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte hoy?'
+            ],
+            i18n: {
+                es: {
+                    title: 'Asistente Yoselin',
+                    subtitle: "Inicia un chat para reservar tu cita.",
+                    inputPlaceholder: 'Escribe tu mensaje...',
+                    getStarted: 'Nueva Conversación'
+                },
+            },
+            // Personalización de colores para que coincida con tu web
+            theme: {
+                '--chat--color-primary': '#C09553', // Dorado para la burbuja y mensajes del usuario
+                '--chat--color-secondary': '#F5F1E9', // Beige para los mensajes del bot
+                '--chat--color-text-on-primary': '#3A3226', // Texto marrón oscuro
+                '--chat--color-text-on-secondary': '#3A3226', // Texto marrón oscuro
+                '--chat--header--background': '#3A3226', // Cabecera marrón oscuro
+                '--chat--header--color': '#FDFBF6' // Texto de cabecera blanco roto
             }
         });
-    });
-
-    // --- LÓGICA DEL CHAT CON DIAGNÓSTICO ---
-    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/9ea65b52-5ea6-427f-a150-e711887b4777/chat';
-    const chatContainer = document.getElementById('chat-container');
-    const chatToggleButton = document.getElementById('chat-toggle-button');
-    const closeChatBtn = document.getElementById('close-chat-btn');
-    const chatMessages = document.getElementById('chat-messages-container');
-    const userInput = document.getElementById('user-chat-input');
-    const sendButton = document.getElementById('send-chat-button');
-    const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
-
-    let sessionId = localStorage.getItem('chatSessionId');
-    if (!sessionId) {
-        sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-        localStorage.setItem('chatSessionId', sessionId);
-    }
-
-    const openChat = () => {
-        chatContainer.classList.add('visible');
-        chatToggleButton.style.opacity = '0';
-        chatToggleButton.style.pointerEvents = 'none';
-        userInput.focus();
-    };
-
-    const closeChat = () => {
-        chatContainer.classList.remove('visible');
-        chatToggleButton.style.opacity = '1';
-        chatToggleButton.style.pointerEvents = 'auto';
-    };
-
-    chatToggleButton.addEventListener('click', openChat);
-    closeChatBtn.addEventListener('click', closeChat);
-
-    const addMessage = (text, className) => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', className);
-        messageElement.textContent = text;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return messageElement;
-    };
-
-    const handleSendMessage = async () => {
-        const messageText = userInput.value.trim();
-        if (messageText === '') return;
-
-        addMessage(messageText, 'user-message');
-        userInput.value = '';
-        const typingIndicator = addMessage('Nexmaia está escribiendo...', 'typing-indicator');
-
-        try {
-            const response = await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chatInput: messageText,
-                    sessionId: sessionId
-                })
+    </script>
+    
+    <script>
+    // --- SCRIPTS GENERALES DE LA PÁGINA ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+        const navbar = document.getElementById('navbar-sticky');
+        if(menuButton) {
+            menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+        }
+        
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') {
+                    e.preventDefault();
+                    return;
+                }
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if(targetElement) { 
+                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                    if (navbar && !navbar.classList.contains('hidden')) { 
+                        navbar.classList.add('hidden'); 
+                    }
+                }
             });
+        });
 
-            if (!response.ok) {
-                throw new Error(`Error de red: ${response.status}`);
+        // --- LÓGICA PARA ABRIR EL CHAT DESDE LOS BOTONES "PEDIR CITA" ---
+        const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
+        
+        const openN8nChat = () => {
+            const n8nChatToggleButton = document.querySelector('#n8n-chat-toggle-button');
+            if (n8nChatToggleButton) {
+                // Si la ventana de chat no está abierta, hacemos clic en la burbuja para abrirla
+                const chatWindow = document.querySelector('.n8n-chat-window');
+                if (!chatWindow || chatWindow.style.display === 'none' || chatWindow.style.opacity === '0') {
+                    n8nChatToggleButton.click();
+                }
             }
+        };
 
-            const data = await response.json();
-            
-            // --- LÍNEA DE DIAGNÓSTICO ---
-            // Esto imprimirá la respuesta completa de n8n en la consola del navegador.
-            console.log("Respuesta completa de n8n:", data); 
-            
-            if(typingIndicator && typingIndicator.parentNode) {
-                chatMessages.removeChild(typingIndicator);
-            }
-
-            if (data && data.output) {
-                addMessage(data.output, 'bot-message');
-            } else {
-                addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
-            }
-        } catch (error) {
-            console.error('Error al contactar con el asistente:', error);
-            if(typingIndicator && typingIndicator.parentNode) {
-                chatMessages.removeChild(typingIndicator);
-            }
-            addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
-        }
-    };
-
-    sendButton.addEventListener('click', handleSendMessage);
-    userInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleSendMessage();
-        }
-    });
-
-    pedirCitaButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChat();
-            setTimeout(() => {
-                userInput.value = 'Hola, me gustaría pedir una cita.';
-                userInput.focus();
-            }, 300);
+        pedirCitaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Esperamos un instante para que el script de n8n cree la burbuja
+                setTimeout(openN8nChat, 100);
+            });
         });
     });
-});
-</script>
-<!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
-<!-- =================================================================== -->
+    </script>
 </body>
 </html>
