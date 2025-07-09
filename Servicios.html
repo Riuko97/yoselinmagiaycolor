@@ -149,50 +149,48 @@
         </div>
     </footer>
     <!-- =================================================================== -->
-    <!-- SCRIPT DEL CHATBOT DE N8N - INICIO -->
+    <!-- CÓDIGO DEL CHATBOT DE N8N - INICIO -->
     <!-- =================================================================== -->
     <script>
       window.n8nChat = {
-        // IMPORTANTE: Reemplaza esta URL con la URL de PRODUCCIÓN de tu nodo "When chat message received"
-        chatUrl: "https://nexmaia.app.n8n.cloud/chat/9ea65b52-5ea6-427f-a150-e711887b4777"
-      };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/n8n-chat/dist/index.min.js"></script>
-    <!-- =================================================================== -->
-    <!-- SCRIPT DEL CHATBOT DE N8N - FIN -->
-    <!-- =================================================================== -->
-       <!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
-<!-- =================================================================== -->
-
-<!-- ESTRUCTURA DEL CHAT (HTML) -->
-<div class="chat-container" id="chat-container">
-    <div class="chat-header" id="chat-header">
-        <span>Asistente Yoselin</span>
-        <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
-    </div>
-    <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Nexmaia, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
-    </div>
-    <div class="chat-input">
-        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
-        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
-    </div>
-</div>
-
-<div class="chat-toggle-button" id="chat-toggle-button">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-</div>
-<script>
-      window.n8nChat = {
-        // IMPORTANTE: Reemplaza esta URL con la URL de PRODUCCIÓN de tu nodo "When chat message received"
-        // Esta es la URL de tu workflow que hemos estado depurando.
-        chatUrl: "https://nexmaia.app.n8n.cloud/chat/9ea65b52-5ea6-427f-a150-e711887b4777"
+        // IMPORTANTE: Esta debe ser la URL de PRODUCCIÓN de tu nodo "When chat message received"
+        chatUrl: "https://nexmaia.app.n8n.cloud/webhook/c9ae2baa-d103-4cb4-9dac-837ba2049a0a/chat"
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/n8n-chat/dist/index.min.js"></script>
     <!-- =================================================================== -->
     <!-- CÓDIGO DEL CHATBOT DE N8N - FIN -->
     <!-- =================================================================== -->
+    
+    <script>
+    // --- SCRIPTS GENERALES DE LA PÁGINA ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+        const navbar = document.getElementById('navbar-sticky');
+        if(menuButton) {
+            menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+        }
+        
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') {
+                    e.preventDefault();
+                    return;
+                }
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if(targetElement) { 
+                        targetElement.scrollIntoView({ behavior: 'smooth' }); 
+                    }
+                    if (navbar && !navbar.classList.contains('hidden')) { 
+                        navbar.classList.add('hidden'); 
+                    }
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
