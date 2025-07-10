@@ -4,15 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yoselin Magia y Color - Peluquería y Estética Unisex en Rubí</title>
+    
+    <!-- Scripts y Estilos Externos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Favicons y Manifest -->
     <link rel="icon" type="image/png" sizes="32x32" href="Logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Logo.png">
     <link rel="apple-touch-icon" sizes="180x180" href="Logo.png">
-    <link rel="manifest" href="Logo.png">
+    <!-- CORRECCIÓN: El manifest debe ser un archivo .json, no una imagen. Esto elimina el error de la consola. -->
+    <!-- Debes crear un archivo 'manifest.json' si deseas usar esta funcionalidad. -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Estilos personalizados de la página -->
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+    <!-- =================================================================
+        CSS (Estilos para el Chat)
+    ================================================================== -->
+    <style>
+        /* Estilos generales y variables de color */
+        :root {
+            /* CAMBIO: Actualizado al color de acento de la web */
+            --primary-color: #C09553; 
+            --user-message-color: #4A90E2; /* Color para mensajes de usuario (azul) */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Botón flotante para abrir el chat */
+        #chat-toggle-button {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 9998;
+        }
+
+        #chat-toggle-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Contenedor principal del chat */
+        #chat-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 90%;
+            max-width: 370px;
+            height: 70vh;
+            max-height: 550px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            font-family: var(--font-family);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        #chat-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Cabecera del chat */
+        #chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        #close-chat-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* Área de mensajes */
+        #chat-messages-container {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background-color: #EFEFEF;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .user-message {
+            background-color: var(--user-message-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .typing-indicator {
+            color: #888;
+            font-style: italic;
+            align-self: flex-start;
+            background: none;
+            padding-left: 0;
+        }
+
+        /* Área de entrada de texto */
+        #chat-input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background-color: #fff;
+        }
+
+        #user-chat-input {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        #user-chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            /* CAMBIO: Sombra de foco actualizada al nuevo color primario */
+            box-shadow: 0 0 0 2px rgba(192, 149, 83, 0.2);
+        }
+
+        #send-chat-button {
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 0.2s;
+        }
+        #send-chat-button:hover {
+            /* CAMBIO: Tono más oscuro del nuevo color primario */
+            background-color: #A97E42; 
+        }
+    </style>
 </head>
 <body class="text-[#3A3226]">
 
@@ -23,7 +203,6 @@
                 <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
             </a>
             <div class="flex md:order-2">
-                <!-- CAMBIO: Añadida la clase 'js-pedir-cita' para interactuar con el chat -->
                 <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
                     Pedir Cita
                 </a>
@@ -64,9 +243,9 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                     <div class="w-full h-96 lg:h-[32rem] rounded-lg shadow-lg overflow-hidden bg-black">
                          <video src="fotos_pelu/WhatsApp Video 2025-07-01 at 16.33.29.mp4" 
-                                 alt="Video del ambiente del salón" 
-                                 class="w-full h-full object-cover" 
-                                 autoplay loop muted playsinline>
+                                alt="Video del ambiente del salón" 
+                                class="w-full h-full object-cover" 
+                                autoplay loop muted playsinline>
                          </video>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
@@ -94,7 +273,6 @@
                     <a href="servicios.html#tratamientos" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Tratamientos y Formas</h3><p class="mt-2 text-[#6B5E4F]">Recupera la salud de tu cabello o consigue un liso o rizo perfecto.</p><p class="mt-4 text-xl font-bold accent-text">Desde 25€</p></a>
                     <a href="servicios.html#depilacion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Depilación y Estética</h3><p class="mt-2 text-[#6B5E4F]">Servicios de depilación facial y corporal con la máxima precisión.</p><p class="mt-4 text-xl font-bold accent-text">Desde 5€</p></a>
                     <a href="servicios.html#maquillaje" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Maquillaje Social</h3><p class="mt-2 text-[#6B5E4F]">Luce radiante en tus eventos más especiales.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <!-- CAMBIO: Añadida la clase 'js-pedir-cita' al botón para interactuar con el chat -->
                     <div class="bg-[#FDFBF6] p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-[var(--border-warm)]"><h3 class="text-2xl font-bold">Pide Tu Cita</h3><p class="mt-2 text-[#6B5E4F]">¿Lista para un cambio? Contacta con nosotros y reserva tu momento.</p><a href="#" class="mt-4 inline-block btn-accent font-semibold text-sm px-4 py-2 rounded-lg js-pedir-cita">Reservar Ahora</a></div>
                 </div>
             </div>
@@ -170,170 +348,181 @@
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
         </div>
     </footer>
-    <!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
-<!-- =================================================================== -->
 
-<!-- ESTRUCTURA DEL CHAT (HTML) -->
-<div class="chat-container" id="chat-container">
-    <div class="chat-header" id="chat-header">
-        <span>Asistente Yoselin</span>
-        <span id="close-chat-btn" style="font-size: 24px; line-height: 1; cursor: pointer;">&times;</span>
+    <!-- =================================================================
+        HTML DEL CHAT (Se inserta aquí, antes de cerrar el body)
+    ================================================================== -->
+    <div id="chat-toggle-button" title="Abrir Chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     </div>
-    <div class="chat-messages" id="chat-messages-container">
-        <div class="message bot-message">¡Hola! Soy Nexmaia, tu asistente virtual en Yoselin Magia y Color. ¿Cómo puedo ayudarte?</div>
+    <div id="chat-container">
+        <div id="chat-header">
+            <h3>Asistente Virtual</h3>
+            <button id="close-chat-btn" title="Cerrar Chat">&times;</button>
+        </div>
+        <div id="chat-messages-container">
+            <div class="message bot-message">
+                ¡Hola! Soy el asistente de Yoselin Magia y Color. ¿Cómo puedo ayudarte hoy?
+            </div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="user-chat-input" placeholder="Escribe un mensaje...">
+            <button id="send-chat-button" title="Enviar Mensaje">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+        </div>
     </div>
-    <div class="chat-input">
-        <input type="text" id="user-chat-input" placeholder="Escribe tu mensaje...">
-        <button id="send-chat-button" aria-label="Enviar mensaje">Enviar</button>
-    </div>
-</div>
 
-<div class="chat-toggle-button" id="chat-toggle-button">
-    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-</div>
+    <!-- =================================================================
+        JAVASCRIPT (Lógica de la página y del Chat)
+    ================================================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-<!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // --- SCRIPTS GENERALES DE LA PÁGINA ---
-    const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-    const navbar = document.getElementById('navbar-sticky');
-    if(menuButton) {
-        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-    }
-    
-    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#') {
-                e.preventDefault();
-                return;
+            // --- LÓGICA GENERAL DE LA PÁGINA (MENÚ, SCROLL, CARRUSEL) ---
+            const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+            const navbar = document.getElementById('navbar-sticky');
+            if (menuButton) {
+                menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
             }
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const targetElement = document.querySelector(href);
-                if(targetElement) { 
-                    targetElement.scrollIntoView({ behavior: 'smooth' }); 
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Lógica del carrusel
+            const track = document.getElementById('carousel-track');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if(track && items.length > 0){
+                let currentIndex = 0;
+                const itemWidth = items[0].clientWidth;
+
+                function updateCarousel() {
+                    track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
                 }
-                if (navbar && !navbar.classList.contains('hidden')) { 
-                    navbar.classList.add('hidden'); 
-                }
+
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    updateCarousel();
+                });
+
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    updateCarousel();
+                });
             }
-        });
-    });
 
-    // --- LÓGICA DEL CHAT CON DIAGNÓSTICO ---
-    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
-    const chatContainer = document.getElementById('chat-container');
-    const chatToggleButton = document.getElementById('chat-toggle-button');
-    const closeChatBtn = document.getElementById('close-chat-btn');
-    const chatMessages = document.getElementById('chat-messages-container');
-    const userInput = document.getElementById('user-chat-input');
-    const sendButton = document.getElementById('send-chat-button');
-    const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
 
-    let sessionId = localStorage.getItem('chatSessionId');
-    if (!sessionId) {
-        sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-        localStorage.setItem('chatSessionId', sessionId);
-    }
+            // --- LÓGICA DEL CHAT ---
+            const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
+            const chatContainer = document.getElementById('chat-container');
+            const chatToggleButton = document.getElementById('chat-toggle-button');
+            const closeChatBtn = document.getElementById('close-chat-btn');
+            const chatMessages = document.getElementById('chat-messages-container');
+            const userInput = document.getElementById('user-chat-input');
+            const sendButton = document.getElementById('send-chat-button');
+            const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
 
-    const openChat = () => {
-        chatContainer.classList.add('visible');
-        chatToggleButton.style.opacity = '0';
-        chatToggleButton.style.pointerEvents = 'none';
-        userInput.focus();
-    };
+            let sessionId = localStorage.getItem('chatSessionId');
+            if (!sessionId) {
+                sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+                localStorage.setItem('chatSessionId', sessionId);
+            }
 
-    const closeChat = () => {
-        chatContainer.classList.remove('visible');
-        chatToggleButton.style.opacity = '1';
-        chatToggleButton.style.pointerEvents = 'auto';
-    };
+            const openChat = () => {
+                chatContainer.classList.add('visible');
+                chatToggleButton.style.opacity = '0';
+                chatToggleButton.style.pointerEvents = 'none';
+                userInput.focus();
+            };
 
-    chatToggleButton.addEventListener('click', openChat);
-    closeChatBtn.addEventListener('click', closeChat);
+            const closeChat = () => {
+                chatContainer.classList.remove('visible');
+                chatToggleButton.style.opacity = '1';
+                chatToggleButton.style.pointerEvents = 'auto';
+            };
 
-    const addMessage = (text, className) => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message', className);
-        messageElement.textContent = text;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return messageElement;
-    };
+            const addMessage = (text, className) => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', className);
+                messageElement.textContent = text;
+                chatMessages.appendChild(messageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return messageElement;
+            };
 
-    const handleSendMessage = async () => {
-        const messageText = userInput.value.trim();
-        if (messageText === '') return;
+            const handleSendMessage = async () => {
+                const messageText = userInput.value.trim();
+                if (messageText === '') return;
 
-        addMessage(messageText, 'user-message');
-        userInput.value = '';
-        const typingIndicator = addMessage('Nexmaia está escribiendo...', 'typing-indicator');
+                addMessage(messageText, 'user-message');
+                userInput.value = '';
+                const typingIndicator = addMessage('Asistente está escribiendo...', 'typing-indicator');
 
-        try {
-            const response = await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chatInput: messageText,
-                    sessionId: sessionId
-                })
+                try {
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chatInput: messageText,
+                            sessionId: sessionId
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Error de red: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log("Respuesta completa de n8n:", data);
+
+                    if (typingIndicator && typingIndicator.parentNode) {
+                        chatMessages.removeChild(typingIndicator);
+                    }
+
+                    if (data && data.text) {
+                        addMessage(data.text, 'bot-message');
+                    } else {
+                        addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
+                    }
+                } catch (error) {
+                    console.error('Error al contactar con el asistente:', error);
+                    if (typingIndicator && typingIndicator.parentNode) {
+                        chatMessages.removeChild(typingIndicator);
+                    }
+                    addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
+                }
+            };
+
+            chatToggleButton.addEventListener('click', openChat);
+            closeChatBtn.addEventListener('click', closeChat);
+            sendButton.addEventListener('click', handleSendMessage);
+            userInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    handleSendMessage();
+                }
             });
 
-            if (!response.ok) {
-                throw new Error(`Error de red: ${response.status}`);
-            }
-
-            const data = await response.json();
-            
-            // --- LÍNEA DE DIAGNÓSTICO ---
-            // Esto imprimirá la respuesta completa de n8n en la consola del navegador.
-            console.log("Respuesta completa de n8n:", data); 
-            
-            if(typingIndicator && typingIndicator.parentNode) {
-                chatMessages.removeChild(typingIndicator);
-            }
-            // ESTE ES EL BLOQUE CORRECTO
-            if (data && data.text) {
-            // Usamos data.text para leer el mensaje
-                addMessage(data.text, 'bot-message');
-            } else {
-                addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
-        }
-        } catch (error) {
-            console.error('Error al contactar con el asistente:', error);
-            if(typingIndicator && typingIndicator.parentNode) {
-                chatMessages.removeChild(typingIndicator);
-            }
-            addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
-        }
-    };
-
-    sendButton.addEventListener('click', handleSendMessage);
-    userInput.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleSendMessage();
-        }
-    });
-
-    pedirCitaButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChat();
-            setTimeout(() => {
-                userInput.value = 'Hola, me gustaría pedir una cita.';
-                userInput.focus();
-            }, 300);
+            pedirCitaButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openChat();
+                    // Pequeña espera para que la animación del chat termine
+                    setTimeout(() => {
+                        userInput.value = 'Hola, me gustaría pedir una cita.';
+                        userInput.focus();
+                    }, 300);
+                });
+            });
         });
-    });
-});
-</script>
-
-<!-- =================================================================== -->
-<!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
-<!-- =================================================================== -->
+    </script>
 </body>
 </html>
