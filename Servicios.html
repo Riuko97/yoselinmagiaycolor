@@ -148,7 +148,7 @@
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
         </div>
     </footer>
-       <!-- =================================================================== -->
+<!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
 <!-- =================================================================== -->
 
@@ -170,6 +170,71 @@
 <div class="chat-toggle-button" id="chat-toggle-button">
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
 </div>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- LÓGICA PARA EL MENÚ HAMBURGUESA ---
+        const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+        const navbar = document.getElementById('navbar-sticky');
+        if(menuButton) {
+            menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+        }
+        
+        // --- LÓGICA PARA LOS DESPLEGABLES DE SERVICIOS (CORREGIDO) ---
+        document.querySelectorAll('.service-item button').forEach(button => {
+            button.addEventListener('click', () => {
+                const details = button.nextElementSibling;
+                const icon = button.querySelector('svg');
+                const isCurrentlyOpen = details.style.maxHeight;
+
+                // Cierra todos los demás desplegables antes de abrir/cerrar el actual
+                document.querySelectorAll('.service-item .service-details').forEach(otherDetails => {
+                    if (otherDetails !== details) {
+                        otherDetails.style.maxHeight = null;
+                        otherDetails.style.paddingTop = '0';
+                        otherDetails.style.paddingBottom = '0';
+                        const otherIcon = otherDetails.previousElementSibling.querySelector('svg');
+                        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                // Abre o cierra el desplegable actual
+                if (isCurrentlyOpen) {
+                    details.style.maxHeight = null;
+                    details.style.paddingTop = '0';
+                    details.style.paddingBottom = '0';
+                    if(icon) icon.style.transform = 'rotate(0deg)';
+                } else {
+                    details.style.maxHeight = details.scrollHeight + "px";
+                    details.style.paddingTop = '0.5rem';
+                    details.style.paddingBottom = '1rem';
+                    if(icon) icon.style.transform = 'rotate(180deg)';
+                } 
+            });
+        });
+
+        // --- LÓGICA PARA ABRIR EL CHAT DESDE LOS BOTONES "PEDIR CITA" ---
+        const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
+        
+        const openN8nChat = () => {
+            const n8nChatToggleButton = document.querySelector('#n8n-chat-toggle-button');
+            if (n8nChatToggleButton) {
+                const chatWindow = document.querySelector('.n8n-chat-window');
+                // Abre el chat solo si no está ya visible
+                if (!chatWindow || window.getComputedStyle(chatWindow).getPropertyValue('opacity') === '0') {
+                    n8nChatToggleButton.click();
+                }
+            }
+        };
+
+        pedirCitaButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Esperamos un instante para que el script de n8n cree la burbuja del chat
+                setTimeout(openN8nChat, 100);
+            });
+        });
+    });
+    </script>
 
 <!-- LÓGICA DEL CHAT Y DE LA PÁGINA (JAVASCRIPT) -->
 <script>
