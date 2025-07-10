@@ -295,12 +295,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if(typingIndicator && typingIndicator.parentNode) {
                 chatMessages.removeChild(typingIndicator);
             }
-
-            if (data && data.output) {
-                addMessage(data.output, 'bot-message');
+            // ESTE ES EL BLOQUE CORRECTO
+            if (data && data.text) {
+            // Usamos data.text para leer el mensaje
+                addMessage(data.text, 'bot-message');
             } else {
                 addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
-            }
+        }
         } catch (error) {
             console.error('Error al contactar con el asistente:', error);
             if(typingIndicator && typingIndicator.parentNode) {
