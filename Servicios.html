@@ -148,19 +148,6 @@
             <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
         </div>
     </footer>
-    <!-- =================================================================== -->
-    <!-- SCRIPT DEL CHATBOT DE N8N - INICIO -->
-    <!-- =================================================================== -->
-    <script>
-      window.n8nChat = {
-        // IMPORTANTE: Reemplaza esta URL con la URL de PRODUCCIÓN de tu nodo "When chat message received"
-        chatUrl: "https://nexmaia.app.n8n.cloud/chat/9ea65b52-5ea6-427f-a150-e711887b4777"
-      };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/n8n-chat/dist/index.min.js"></script>
-    <!-- =================================================================== -->
-    <!-- SCRIPT DEL CHATBOT DE N8N - FIN -->
-    <!-- =================================================================== -->
        <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - INICIO -->
 <!-- =================================================================== -->
@@ -215,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- LÓGICA DEL CHAT CON DIAGNÓSTICO ---
-    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/26abc071-f27e-427c-8475-2a1b0cdc2e71';
+    const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/9ea65b52-5ea6-427f-a150-e711887b4777/chat';
     const chatContainer = document.getElementById('chat-container');
     const chatToggleButton = document.getElementById('chat-toggle-button');
     const closeChatBtn = document.getElementById('close-chat-btn');
