@@ -6,6 +6,7 @@
     <title>Yoselin Magia y Color - Peluquería y Estética Unisex en Rubí</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" sizes="32x32" href="Logo.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Logo.png">
@@ -329,6 +330,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+</script>
+<script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+        webhookUrl: 'https://nexmaia.app.n8n.cloud/webhook/c9ae2baa-d103-4cb4-9dac-837ba2049a0a/chat'
+    });
 </script>
 <!-- =================================================================== -->
 <!-- CÓDIGO DEL CHAT DE NEXMAIA - FIN -->
