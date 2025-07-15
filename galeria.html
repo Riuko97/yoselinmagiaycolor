@@ -261,7 +261,9 @@
         </div>
     </div>
                     <!-- Imágenes como items de la galería -->
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="fotos_pelu\Cambio.jfif" alt="Trabajo de peluquería 1" class="object-cover w-full h-full"></div>
+                     <div id="openModalBtn" class="w-full h-full rounded-lg overflow-hidden shadow-lg cursor-pointer group">
+                        <img src="fotos_pelu/Cambio.jfif" alt="Ver antes y después del trabajo" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                    </div>
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="fotos_pelu\cambio 4.jpeg" alt="Trabajo de peluquería 2" class="object-cover w-full h-full"></div>
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+C" alt="Trabajo de peluquería 3" class="object-cover w-full h-full"></div>
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+D" alt="Trabajo de peluquería 4" class="object-cover w-full h-full"></div>
@@ -325,6 +327,22 @@
             </button>
         </div>
     </div>
+    <div id="imageModal" class="fixed inset-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center p-4 hidden z-[10000]">
+    <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto relative">
+        <button id="closeModalBtn" class="absolute top-2 right-4 text-black text-4xl font-bold hover:text-red-500 z-10">&times;</button>
+        <h3 class="text-2xl font-bold p-4 border-b">Antes y Después</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
+            <div>
+                <p class="text-center font-semibold mb-2">ANTES</p>
+                <img src="fotos_pelu/antes.jfif" alt="Estado anterior del cabello" class="rounded-md w-full">
+            </div>
+            <div>
+                <p class="text-center font-semibold mb-2">DESPUÉS</p>
+                <img src="fotos_pelu/Cambio.jfif" alt="Resultado final del trabajo" class="rounded-md w-full">
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- =================================================================
         JAVASCRIPT (Lógica de la página y del Chat)
@@ -352,25 +370,28 @@
                 });
             });
             // --- LÓGICA DEL MODAL DE LA GALERÍA ---
-            const openModalBtn = document.getElementById('openModalBtn');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const imageModal = document.getElementById('imageModal');
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const imageModal = document.getElementById('imageModal');
 
-            if(openModalBtn && closeModalBtn && imageModal) {
-                const openModal = () => imageModal.classList.remove('hidden');
-                const closeModal = () => imageModal.classList.add('hidden');
+if (openModalBtn && closeModalBtn && imageModal) {
+    const openModal = () => imageModal.classList.remove('hidden');
+    const closeModal = () => imageModal.classList.add('hidden');
 
-                openModalBtn.addEventListener('click', openModal);
-                closeModalBtn.addEventListener('click', closeModal);
-                
-                imageModal.addEventListener('click', (event) => {
-                    if (event.target === imageModal) closeModal();
-                });
+    openModalBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    imageModal.addEventListener('click', (event) => {
+        if (event.target === imageModal) closeModal();
+    });
 
-                document.addEventListener('keydown', (event) => {
-                    if (event.key === 'Escape') closeModal();
-                });
-            }
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !imageModal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+}
+            
 
             // --- LÓGICA DEL CHAT ---
             const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
