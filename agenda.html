@@ -3,67 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda - Yoselin Magia y Color</title>
-    
+    <title>Reservar Cita - Yoselin Magia y Color</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" sizes="32x32" href="Logo.png">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
-
     <style>
-        /* Estilos del Chat (puedes mantenerlos si quieres el chat en esta página) */
-        :root { --primary-color: #C09553; }
-        /* ... Aquí irían los demás estilos de tu chat ... */
+        /* Estilos para el estado de carga y los botones */
+        .loader { border-top-color: #C09553; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Clases para el estado de los botones de hora */
+        .time-slot-btn { transition: background-color 0.2s, color 0.2s; }
+        .time-slot-btn.selected { background-color: #C09553; color: white; }
     </style>
 </head>
 <body class="text-[#3A3226]">
 
-    <nav class="bg-[#FDFBF6]/80 backdrop-blur-md sticky w-full z-30 top-0 start-0 shadow-sm">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center space-x-3">
-                <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
-            </a>
-            <div class="flex md:order-2">
-                <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
-                    Pedir Cita
-                </a>
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                    <span class="sr-only">Abrir menú</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                    <li><a href="servicios.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Servicios</a></li>
-                    <li><a href="galeria.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Galería</a></li>
-                    <li><a href="agenda.html" class="block py-2 px-3 accent-text font-bold rounded md:bg-transparent md:p-0" aria-current="page">Agenda</a></li>
-                    <li><a href="index.html#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <nav> </nav>
 
     <main>
         <section class="bg-[#F5F1E9] pt-32 pb-16 sm:pt-40 sm:pb-24">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Nuestra Disponibilidad</h1>
-                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">Consulta nuestra agenda en tiempo real. Los huecos marcados como "Ocupado" no están disponibles. Para reservar una hora libre, por favor, pide cita a través de nuestro asistente virtual.</p>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Reserva tu Cita</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">Selecciona un día, elige una hora disponible y completa tus datos para confirmar tu cita al instante.</p>
             </div>
         </section>
 
-        <section id="agenda-calendario" class="py-16 sm:py-20 bg-[#FDFBF6]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <iframe src="https://calenar.google.com/calendar/embed?src=aea381a899e56d92b0fae49a65c219ae85e02241501169678d983d5be46b1146%40group.calendar.google.com&ctz=Europe%2FMadrid" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <section id="booking-system" class="py-16 sm:py-20 bg-[#FDFBF6]">
+            <div class="max-w-screen-md mx-auto px-6 lg:px-8">
+                
+                <div class="mb-8">
+                    <label for="date-picker" class="block text-lg font-semibold mb-2">1. Elige una fecha:</label>
+                    <input type="date" id="date-picker" class="w-full p-3 border border-gray-300 rounded-lg">
                 </div>
+
+                <div id="time-slots-container" class="mb-8 hidden">
+                    <p class="block text-lg font-semibold mb-2">2. Elige una hora disponible:</p>
+                    <div id="time-slots-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-4">
+                        </div>
+                    <div id="loader" class="hidden w-8 h-8 border-4 rounded-full loader mx-auto mt-4"></div>
+                </div>
+
+                <div id="booking-form-container" class="hidden">
+                    <p class="block text-lg font-semibold mb-2">3. Completa tus datos:</p>
+                    <form id="booking-form" class="space-y-4">
+                        <div>
+                            <label for="service" class="block">Servicio:</label>
+                            <select id="service" name="service" required class="w-full p-3 border border-gray-300 rounded-lg">
+                                <option value="Corte Hombre">Corte Hombre</option>
+                                <option value="Corte Mujer - Pelo Largo Liso">Corte Mujer - Pelo Largo Liso</option>
+                                <option value="Tinte Raíz y Peinar - Pelo corto">Tinte Raíz y Peinar - Pelo corto</option>
+                                </select>
+                        </div>
+                        <div>
+                            <label for="name" class="block">Nombre:</label>
+                            <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label for="email" class="block">Email (para la confirmación):</label>
+                            <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg">
+                        </div>
+                        <button type="submit" class="w-full btn-accent font-bold py-3 px-8 rounded-lg text-lg">Confirmar Reserva</button>
+                    </form>
+                </div>
+                
+                <div id="response-message" class="mt-6 text-center"></div>
+
+            </div>
         </section>
     </main>
 
-    <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
-        </footer>
+    <footer> </footer>
 
-    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // URLs de tus webhooks de n8n (¡DEBES CAMBIARLAS!)
+            const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
+            const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
+
+            const datePicker = document.getElementById('date-picker');
+            const timeSlotsContainer = document.getElementById('time-slots-container');
+            const timeSlotsGrid = document.getElementById('time-slots-grid');
+            const loader = document.getElementById('loader');
+            const bookingFormContainer = document.getElementById('booking-form-container');
+            const bookingForm = document.getElementById('booking-form');
+            const responseMessage = document.getElementById('response-message');
+            
+            let selectedTime = null;
+
+            // Cuando el usuario elige una fecha
+            datePicker.addEventListener('change', async () => {
+                const selectedDate = datePicker.value;
+                if (!selectedDate) return;
+
+                // Resetear todo
+                timeSlotsGrid.innerHTML = '';
+                bookingFormContainer.classList.add('hidden');
+                responseMessage.innerHTML = '';
+                timeSlotsContainer.classList.remove('hidden');
+                loader.classList.remove('hidden');
+
+                try {
+                    const response = await fetch(GET_AVAILABILITY_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ date: selectedDate })
+                    });
+                    if (!response.ok) throw new Error('Error al cargar la disponibilidad.');
+                    
+                    const availableTimes = await response.json();
+                    
+                    loader.classList.add('hidden');
+                    
+                    if (availableTimes.length === 0) {
+                        timeSlotsGrid.innerHTML = '<p class="col-span-full text-center">No hay horas disponibles para este día. Por favor, elige otra fecha.</p>';
+                        return;
+                    }
+
+                    availableTimes.forEach(time => {
+                        const btn = document.createElement('button');
+                        btn.type = 'button';
+                        btn.textContent = time;
+                        btn.className = 'p-3 border rounded-lg time-slot-btn hover:bg-gray-200';
+                        btn.dataset.time = time;
+                        btn.addEventListener('click', () => {
+                            // Deseleccionar el botón anterior
+                            const prevSelected = document.querySelector('.time-slot-btn.selected');
+                            if (prevSelected) {
+                                prevSelected.classList.remove('selected');
+                            }
+                            // Seleccionar el nuevo
+                            btn.classList.add('selected');
+                            selectedTime = btn.dataset.time;
+                            bookingFormContainer.classList.remove('hidden');
+                        });
+                        timeSlotsGrid.appendChild(btn);
+                    });
+
+                } catch (error) {
+                    loader.classList.add('hidden');
+                    timeSlotsGrid.innerHTML = `<p class="col-span-full text-center text-red-500">${error.message}</p>`;
+                }
+            });
+
+            // Cuando el usuario envía el formulario de reserva
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                responseMessage.innerHTML = '<p>Procesando tu reserva...</p>';
+
+                const formData = new FormData(bookingForm);
+                const bookingData = {
+                    date: datePicker.value,
+                    time: selectedTime,
+                    service: formData.get('service'),
+                    name: formData.get('name'),
+                    email: formData.get('email')
+                };
+
+                try {
+                    const response = await fetch(CREATE_BOOKING_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(bookingData)
+                    });
+                    if (!response.ok) throw new Error('No se pudo completar la reserva.');
+
+                    const result = await response.json();
+                    responseMessage.innerHTML = `<p class="text-green-600 font-bold">${result.message}</p>`;
+                    bookingForm.reset();
+                    bookingFormContainer.classList.add('hidden');
+                    timeSlotsContainer.classList.add('hidden');
+
+                } catch (error) {
+                    responseMessage.innerHTML = `<p class="text-red-500 font-bold">${error.message}</p>`;
+                }
+            });
+        });
+    </script>
+</body>
 </html>
