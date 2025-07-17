@@ -142,9 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!datePicker) return;
 
         // URLs de tus webhooks de n8n
+        const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/18d65326-e3c6-4d33-8354-b813b6f2d8d4';
         const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
         const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
 
+        const serviceSelect = document.getElementById('service');
         const timeSlotsContainer = document.getElementById('time-slots-container');
         const timeSlotsGrid = document.getElementById('time-slots-grid');
         const loader = document.getElementById('loader');
@@ -153,6 +155,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const responseMessage = document.getElementById('response-message');
         
         let selectedTime = null;
+
+        const loadServices = async () => {
+        try {
+            const response = await fetch(GET_SERVICES_URL);
+            if (!response.ok) throw new Error('No se pudieron cargar los servicios.');
+
+            const data = await response.json();
+            const services = data.services || [];
+
+            serviceSelect.innerHTML = '<option value="">-- Elige un servicio --</option>';
+
+            services.forEach(serviceName => {
+                const option = document.createElement('option');
+                option.value = serviceName;
+                option.textContent = serviceName;
+                serviceSelect.appendChild(option);
+            });
+
+        } catch (error) {
+            serviceSelect.innerHTML = '<option value="">Error al cargar servicios</option>';
+            console.error(error);
+        }
+    };
 
         datePicker.addEventListener('change', async () => {
             const selectedDate = datePicker.value;
