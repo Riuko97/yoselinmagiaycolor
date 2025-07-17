@@ -5,225 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yoselin Magia y Color - Peluquería y Estética Unisex en Rubí</title>
     
-    <!-- Scripts y Estilos Externos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Favicons y Manifest -->
-    <link rel="icon" type="image/png" sizes="32x32" href="Logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="Logo.png">
-    <!-- CORRECCIÓN: El manifest debe ser un archivo .json, no una imagen. Esto elimina el error de la consola. -->
-    <!-- Debes crear un archivo 'manifest.json' si deseas usar esta funcionalidad. -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
     <link rel="manifest" href="manifest.json">
-
-    <!-- Estilos personalizados de la página -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- =================================================================
-        CSS (Estilos para el Chat)
-    ================================================================== -->
-    <style>
-        /* Estilos generales y variables de color */
-        :root {
-            /* CAMBIO: Actualizado al color de acento de la web */
-            --primary-color: #C09553; 
-            --user-message-color: #4A90E2; /* Color para mensajes de usuario (azul) */
-            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        /* Botón flotante para abrir el chat */
-        #chat-toggle-button {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 9998;
-        }
-
-        #chat-toggle-button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Contenedor principal del chat */
-        #chat-container {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 90%;
-            max-width: 370px;
-            height: 70vh;
-            max-height: 550px;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            font-family: var(--font-family);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        #chat-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* Cabecera del chat */
-        #chat-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #chat-header h3 {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        #close-chat-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        /* Área de mensajes */
-        #chat-messages-container {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: #f9f9f9;
-        }
-
-        .message {
-            padding: 10px 15px;
-            border-radius: 18px;
-            max-width: 80%;
-            word-wrap: break-word;
-            line-height: 1.4;
-        }
-
-        .bot-message {
-            background-color: #EFEFEF;
-            color: #333;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-
-        .user-message {
-            background-color: var(--user-message-color);
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-        
-        .typing-indicator {
-            color: #888;
-            font-style: italic;
-            align-self: flex-start;
-            background: none;
-            padding-left: 0;
-        }
-
-        /* Área de entrada de texto */
-        #chat-input-area {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #eee;
-            background-color: #fff;
-        }
-
-        #user-chat-input {
-            flex-grow: 1;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 10px 15px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        
-        #user-chat-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            /* CAMBIO: Sombra de foco actualizada al nuevo color primario */
-            box-shadow: 0 0 0 2px rgba(192, 149, 83, 0.2);
-        }
-
-        #send-chat-button {
-            background-color: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: background-color 0.2s;
-        }
-        #send-chat-button:hover {
-            /* CAMBIO: Tono más oscuro del nuevo color primario */
-            background-color: #A97E42; 
-        }
-    </style>
 </head>
 <body class="text-[#3A3226]">
 
-    <!-- BARRA DE NAVEGACIÓN -->
-    <nav class="bg-[#FDFBF6]/80 backdrop-blur-md fixed w-full z-30 top-0 start-0 shadow-sm">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center space-x-3">
-                <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
-            </a>
-            <div class="flex md:order-2">
-                <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
-                    Pedir Cita
-                </a>
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                    <span class="sr-only">Abrir menú</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                    <li><a href="servicios.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Servicios</a></li>
-                    <li><a href="galeria.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Galería</a></li>
-                    <li><a href="#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
-                    <li><a href="agenda.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Agenda</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <header id="navbar-placeholder"></header>
     
     <main>
-        <!-- SECCIÓN HERO -->
         <section class="bg-[#FDFBF6] pt-32 pb-20 sm:pt-40 sm:pb-24">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-[#3A3226]">El Arte de Cuidar tu Cabello</h1>
@@ -234,52 +30,38 @@
             </div>
         </section>
 
-        <!-- SECCIÓN: FOTOS DEL LOCAL -->
         <section id="nuestro-espacio" class="py-16 sm:py-20 bg-[#F5F1E9]">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold">Conoce Nuestro Espacio</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Hemos creado un ambiente relajante y profesional para que te sientas como en casa. Un lugar donde la belleza y el bienestar se encuentran.</p>
+                    <p class="mt-4 text-lg text-[#6B5E4F]">Hemos creado un ambiente relajante y profesional para que te sientas como en casa.</p>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
                     <div class="w-full h-96 lg:h-[32rem] rounded-lg shadow-lg overflow-hidden bg-black">
-                         <video src="fotos_pelu/WhatsApp Video 2025-07-01 at 16.33.29.mp4" 
-                                alt="Video del ambiente del salón" 
-                                class="w-full h-full object-cover" 
-                                autoplay loop muted playsinline>
-                         </video>
+                         <video src="fotos_pelu/WhatsApp Video 2025-07-01 at 16.33.29.mp4" alt="Video del ambiente del salón" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
-                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                            <img src="fotos_pelu/desde el fondo.jfif" alt="Vista amplia del interior del salón de peluquería" class="w-full h-full object-cover">
-                        </div>
-                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden">
-                           <img src="fotos_pelu/toda.jfif" alt="Zona de tocadores y espejos del salón" class="w-full h-full object-cover">
-                        </div>
+                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden"><img src="fotos_pelu/desde el fondo.jfif" alt="Vista del salón" class="w-full h-full object-cover"></div>
+                        <div class="w-full h-64 sm:h-72 lg:h-60 rounded-lg shadow-lg overflow-hidden"><img src="fotos_pelu/toda.jfif" alt="Zona de tocadores" class="w-full h-full object-cover"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN SERVICIOS -->
         <section id="servicios" class="py-16 sm:py-20 bg-[#FDFBF6]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
+             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold">Servicios Exclusivos para Ti</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Desde un corte de vanguardia hasta el color que siempre has soñado. Haz clic para ver la lista completa de servicios y precios.</p>
+                    <p class="mt-4 text-lg text-[#6B5E4F]">Desde un corte de vanguardia hasta el color que siempre has soñado. Haz clic para ver la lista completa.</p>
                 </div>
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="servicios.html#corte" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Corte y Peinado</h3><p class="mt-2 text-[#6B5E4F]">Asesoramiento personalizado para encontrar el estilo que mejor se adapta a ti.</p><p class="mt-4 text-xl font-bold accent-text">Desde 12€</p></a>
-                    <a href="servicios.html#coloracion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Coloración y Mechas</h3><p class="mt-2 text-[#6B5E4F]">Expertos en las últimas técnicas como Balayage y Babylights.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <a href="servicios.html#tratamientos" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Tratamientos y Formas</h3><p class="mt-2 text-[#6B5E4F]">Recupera la salud de tu cabello o consigue un liso o rizo perfecto.</p><p class="mt-4 text-xl font-bold accent-text">Desde 25€</p></a>
-                    <a href="servicios.html#depilacion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Depilación y Estética</h3><p class="mt-2 text-[#6B5E4F]">Servicios de depilación facial y corporal con la máxima precisión.</p><p class="mt-4 text-xl font-bold accent-text">Desde 5€</p></a>
-                    <a href="servicios.html#maquillaje" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Maquillaje Social</h3><p class="mt-2 text-[#6B5E4F]">Luce radiante en tus eventos más especiales.</p><p class="mt-4 text-xl font-bold accent-text">Desde 30€</p></a>
-                    <div class="bg-[#FDFBF6] p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-[var(--border-warm)]"><h3 class="text-2xl font-bold">Pide Tu Cita</h3><p class="mt-2 text-[#6B5E4F]">¿Lista para un cambio? Contacta con nosotros y reserva tu momento.</p><a href="#" class="mt-4 inline-block btn-accent font-semibold text-sm px-4 py-2 rounded-lg js-pedir-cita">Reservar Ahora</a></div>
+                    <a href="servicios.html#corte" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Corte y Peinado</h3><p class="mt-2 text-[#6B5E4F]">Asesoramiento personalizado para el estilo que mejor se adapta a ti.</p></a>
+                    <a href="servicios.html#coloracion" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Coloración y Mechas</h3><p class="mt-2 text-[#6B5E4F]">Expertos en las últimas técnicas como Balayage y Babylights.</p></a>
+                    <a href="servicios.html#tratamientos" class="block bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-200"><h3 class="text-2xl font-bold">Tratamientos y Formas</h3><p class="mt-2 text-[#6B5E4F]">Recupera la salud de tu cabello o consigue un liso o rizo perfecto.</p></a>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN GALERÍA (CARRUSEL) -->
         <section id="galeria" class="py-16 sm:py-20 bg-[#F5F1E9]">
              <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto">
@@ -289,12 +71,10 @@
                 <div class="mt-16 relative">
                     <div id="carousel-container" class="overflow-hidden">
                         <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
-                            <!-- Items del carrusel -->
-                            <div class="carousel-item p-2"><img src="fotos_pelu\Cambio.jfif" alt="Ejemplo de peinado 1" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="fotos_pelu\cambio 2.jfif" alt="Ejemplo de peinado 2" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="fotos_pelu\cambio 4.jpeg" alt="Ejemplo de peinado 3" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="fotos_pelu/Cambio.jfif" alt="Ejemplo de peinado 1" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="fotos_pelu/cambio 2.jfif" alt="Ejemplo de peinado 2" class="rounded-lg"></div>
+                            <div class="carousel-item p-2"><img src="fotos_pelu/cambio 4.jpeg" alt="Ejemplo de peinado 3" class="rounded-lg"></div>
                             <div class="carousel-item p-2"><img src="https://placehold.co/400x400/FDFBF6/C09553?text=Look+4" alt="Ejemplo de peinado 4" class="rounded-lg"></div>
-                            <div class="carousel-item p-2"><img src="https://placehold.co/400x400/F5F1E9/C09553?text=Look+5" alt="Ejemplo de peinado 5" class="rounded-lg"></div>
                         </div>
                     </div>
                     <button id="prevBtn" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/50 hover:bg-white rounded-full p-2 shadow-md"><svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
@@ -303,20 +83,17 @@
             </div>
         </section>
 
-        <!-- SECCIÓN CONTACTO -->
         <section id="contacto" class="py-20 sm:py-24 bg-[#FDFBF6]">
-            <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
+             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto">
                     <h2 class="text-3xl md:text-4xl font-bold">Contacta y Pide tu Cita</h2>
-                    <p class="mt-4 text-lg text-[#6B5E4F]">Estamos deseando conocerte. Llámanos o ven a visitarnos a nuestro salón en Rubí. <br>O si lo prefieres, pide tu cita con nuestro <strong class="accent-text">asistente virtual NEXMAIA</strong>.</p>
+                    <p class="mt-4 text-lg text-[#6B5E4F]">Llámanos o ven a visitarnos. O si lo prefieres, pide tu cita con nuestro <strong class="accent-text">asistente virtual</strong>.</p>
                 </div>
                 <div class="mt-12 max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8 border border-gray-200">
                     <div>
                         <h3 class="text-xl font-bold mb-4">Información de Contacto</h3>
                         <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" /></svg> Carrer de Sabadell, 53, 08191 Rubí, Barcelona</p>
                         <p class="flex items-center mb-3"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg> +34 935 88 76 86</p>
-                        <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg>Síguenos en Facebook</a>
-                        <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="flex items-center mb-3 hover:text-[#C09553] transition-colors"><svg class="w-5 h-5 mr-2 accent-text" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>Síguenos en Instagram</a>
                         <h3 class="text-xl font-bold mt-8 mb-4">Nuestro Horario</h3>
                         <p><strong>Martes a Jueves:</strong> 9:30 - 13:00 y 15:30 - 20:00</p>
                         <p><strong>Viernes:</strong> 9:30 - 20:00 (intensivo)</p>
@@ -324,206 +101,16 @@
                         <p><strong>Lunes y Domingos:</strong> Cerrado</p>
                     </div>
                     <div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2988.608386470002!2d2.032276076594248!3d41.49080647129759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a491e777492c39%3A0xe372e91176b65a50!2sCarrer%20de%20Sabadell%2C%2053%2C%2008191%20Rub%C3%AD%2C%20Barcelona!5e0!3m2!1ses!2ses!4v1719401764350!5m2!1ses!2ses" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg"></iframe>
+                        <iframe src="http://googleusercontent.com/maps.google.com/2" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg"></iframe>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
-        <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
-                <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
-            </div>
-            <div class="text-sm space-x-4 mb-4">
-                <a href="aviso-legal.html" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
-                <span>|</span>
-                <a href="politica-de-privacidad.html" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
-                <span>|</span>
-                <a href="politica-de-cookies.html" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
-            </div>
-            <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
-            <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
+    <div id="chat-placeholder"></div>
 
-    <!-- =================================================================
-        HTML DEL CHAT (Se inserta aquí, antes de cerrar el body)
-    ================================================================== -->
-    <div id="chat-toggle-button" title="Abrir Chat">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    </div>
-    <div id="chat-container">
-        <div id="chat-header">
-            <h3>Asistente Virtual</h3>
-            <button id="close-chat-btn" title="Cerrar Chat">&times;</button>
-        </div>
-        <div id="chat-messages-container">
-            <div class="message bot-message">
-                ¡Hola! Soy el asistente de Yoselin Magia y Color. ¿Cómo puedo ayudarte hoy?
-            </div>
-        </div>
-        <div id="chat-input-area">
-            <input type="text" id="user-chat-input" placeholder="Escribe un mensaje...">
-            <button id="send-chat-button" title="Enviar Mensaje">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-        </div>
-    </div>
-
-    <!-- =================================================================
-        JAVASCRIPT (Lógica de la página y del Chat)
-    ================================================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            // --- LÓGICA GENERAL DE LA PÁGINA (MENÚ, SCROLL, CARRUSEL) ---
-            const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-            const navbar = document.getElementById('navbar-sticky');
-            if (menuButton) {
-                menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-            }
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-            
-            // Lógica del carrusel
-            const track = document.getElementById('carousel-track');
-            const items = document.querySelectorAll('.carousel-item');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            if(track && items.length > 0){
-                let currentIndex = 0;
-                const itemWidth = items[0].clientWidth;
-
-                function updateCarousel() {
-                    track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-                }
-
-                nextBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex + 1) % items.length;
-                    updateCarousel();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    currentIndex = (currentIndex - 1 + items.length) % items.length;
-                    updateCarousel();
-                });
-            }
-
-
-            // --- LÓGICA DEL CHAT ---
-            const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
-            const chatContainer = document.getElementById('chat-container');
-            const chatToggleButton = document.getElementById('chat-toggle-button');
-            const closeChatBtn = document.getElementById('close-chat-btn');
-            const chatMessages = document.getElementById('chat-messages-container');
-            const userInput = document.getElementById('user-chat-input');
-            const sendButton = document.getElementById('send-chat-button');
-            const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
-
-            let sessionId = localStorage.getItem('chatSessionId');
-            if (!sessionId) {
-                sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-                localStorage.setItem('chatSessionId', sessionId);
-            }
-
-            const openChat = () => {
-                chatContainer.classList.add('visible');
-                chatToggleButton.style.opacity = '0';
-                chatToggleButton.style.pointerEvents = 'none';
-                userInput.focus();
-            };
-
-            const closeChat = () => {
-                chatContainer.classList.remove('visible');
-                chatToggleButton.style.opacity = '1';
-                chatToggleButton.style.pointerEvents = 'auto';
-            };
-
-            const addMessage = (text, className) => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', className);
-                messageElement.textContent = text;
-                chatMessages.appendChild(messageElement);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                return messageElement;
-            };
-
-            const handleSendMessage = async () => {
-                const messageText = userInput.value.trim();
-                if (messageText === '') return;
-
-                addMessage(messageText, 'user-message');
-                userInput.value = '';
-                const typingIndicator = addMessage('Asistente está escribiendo...', 'typing-indicator');
-
-                try {
-                    const response = await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chatInput: messageText,
-                            sessionId: sessionId
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`Error de red: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-                    console.log("Respuesta completa de n8n:", data);
-
-                    if (typingIndicator && typingIndicator.parentNode) {
-                        chatMessages.removeChild(typingIndicator);
-                    }
-
-                    if (data && data.text) {
-                        addMessage(data.text, 'bot-message');
-                    } else {
-                        addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
-                    }
-                } catch (error) {
-                    console.error('Error al contactar con el asistente:', error);
-                    if (typingIndicator && typingIndicator.parentNode) {
-                        chatMessages.removeChild(typingIndicator);
-                    }
-                    addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
-                }
-            };
-
-            chatToggleButton.addEventListener('click', openChat);
-            closeChatBtn.addEventListener('click', closeChat);
-            sendButton.addEventListener('click', handleSendMessage);
-            userInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    handleSendMessage();
-                }
-            });
-
-            pedirCitaButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openChat();
-                    // Pequeña espera para que la animación del chat termine
-                    setTimeout(() => {
-                        userInput.value = 'Hola, me gustaría pedir una cita.';
-                        userInput.focus();
-                    }, 300);
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
