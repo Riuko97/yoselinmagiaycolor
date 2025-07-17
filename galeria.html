@@ -5,330 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería - Yoselin Magia y Color</title>
     
-    <!-- Scripts y Estilos Externos -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Favicons y Manifest -->
-    <link rel="icon" type="image/png" sizes="32x32" href="Logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="Logo.png">
-    <!-- CORRECCIÓN: El manifest debe ser un archivo .json. -->
+    <link rel="icon" type="image/png" href="Logo.png">
+    <link rel="apple-touch-icon" href="Logo.png">
     <link rel="manifest" href="manifest.json">
-
-    <!-- Estilos personalizados de la página -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- =================================================================
-        CSS (Estilos para el Chat)
-    ================================================================== -->
-    
 </head>
 <body class="text-[#3A3226]">
-     <nav class="bg-[#FDFBF6]/80 backdrop-blur-md fixed w-full z-30 top-0 start-0 shadow-sm">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="index.html" class="flex items-center space-x-3">
-                <span class="text-3xl md:text-4xl font-bold text-[#3A3226] font-tangerine">Yoselin Magia y Color</span>
-            </a>
-            <div class="flex md:order-2">
-                <a href="#" class="btn-accent font-semibold rounded-lg text-sm px-5 py-2.5 text-center js-pedir-cita">
-                    Pedir Cita
-                </a>
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-                    <span class="sr-only">Abrir menú</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/></svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-                    <li><a href="servicios.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Servicios</a></li>
-                    <li><a href="galeria.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Galería</a></li>
-                    <li><a href="#contacto" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Contacto</a></li>
-                    <li><a href="agenda.html" class="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#C09553] md:p-0 transition-colors">Agenda</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
+    <header id="navbar-placeholder"></header>
 
     <main>
         <section class="bg-[#F5F1E9] pt-32 pb-16 sm:pt-40 sm:pb-24">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8 text-center">
-                <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Nuestra Galería</h1>
-                    <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">La inspiración nace del trabajo bien hecho. Aquí tienes una muestra de los estilos, colores y sonrisas que creamos cada día en nuestro salón.</p>
-                </div>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight tracking-tight">Nuestra Galería</h1>
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#6B5E4F]">Una muestra de los estilos, colores y sonrisas que creamos cada día.</p>
             </div>
         </section>
 
         <section id="galeria-fotos" class="py-16 sm:py-20 bg-[#FDFBF6]">
             <div class="max-w-screen-xl mx-auto px-6 lg:px-8">
-                <!-- CORRECCIÓN: Se ha reestructurado la galería para que sea HTML válido -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <!-- Video como un item de la galería -->
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-lg">
-                        <video class="object-cover w-full h-full" autoplay loop muted playsinline poster="https://placehold.co/600x600/a78bfa/ffffff?text=Video+Look">
-                            <source src="fotos_pelu/cambio mechas tradicionales.mp4" type="video/mp4">
-                            Tu navegador no soporta la etiqueta de video.
-                        </video>
+                        <video class="object-cover w-full h-full" autoplay loop muted playsinline src="fotos_pelu/cambio mechas tradicionales.mp4"></video>
                     </div>
                     <div class="w-full h-full rounded-lg overflow-hidden shadow-lg">
-                        <video class="object-cover w-full h-full" autoplay loop muted playsinline poster="https://placehold.co/600x600/a78bfa/ffffff?text=Video+Look">
-                            <source src="fotos_pelu\WhatsApp Video 2025-07-16 at 00.03.27.mp4" type="video/mp4">
-                            Tu navegador no soporta la etiqueta de video.
-                        </video>
+                        <video class="object-cover w-full h-full" autoplay loop muted playsinline src="fotos_pelu/WhatsApp Video 2025-07-16 at 00.03.27.mp4"></video>
                     </div>
-                    <div id="imageModal" class="fixed inset-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center p-4 hidden z-[10000]">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto relative">
-            <button id="closeModalBtn" class="absolute top-2 right-4 text-black text-4xl font-bold hover:text-red-500 z-10">&times;</button>
-            <h3 class="text-2xl font-bold p-4 border-b">Antes y Después</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
-                <div>
-                    <p class="text-center font-semibold mb-2">ANTES</p>
-                    <img src="fotos_pelu\antes.jfif" alt="Estado anterior del cabello" class="rounded-md w-full">
-                </div>
-                <div>
-                    <p class="text-center font-semibold mb-2">DESPUÉS</p>
-                    <img src="fotos_pelu\Cambio.jfif" alt="Resultado final del trabajo" class="rounded-md w-full">
-                </div>
-            </div>
-        </div>
-    </div>
-                    <!-- Imágenes como items de la galería -->
-                     <div id="openModalBtn" class="w-full h-full rounded-lg overflow-hidden shadow-lg cursor-pointer group">
-                        <img src="fotos_pelu/Cambio.jfif" alt="Ver antes y después del trabajo" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300" loading="lazy">
+                    <div id="openModalBtn" class="w-full h-full rounded-lg overflow-hidden shadow-lg cursor-pointer group">
+                        <img src="fotos_pelu/Cambio.jfif" alt="Ver antes y después" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-300">
                     </div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="fotos_pelu\cambio 4.jpeg" alt="Trabajo de peluquería 2" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+C" alt="Trabajo de peluquería 3" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+D" alt="Trabajo de peluquería 4" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+E" alt="Trabajo de peluquería 5" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+F" alt="Trabajo de peluquería 6" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/FDFBF6/C09553?text=Look+G" alt="Trabajo de peluquería 7" class="object-cover w-full h-full"></div>
-                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="https://placehold.co/600x600/F5F1E9/C09553?text=Look+H" alt="Trabajo de peluquería 8" class="object-cover w-full h-full"></div>
-                </div>
+                    <div class="w-full h-full rounded-lg overflow-hidden shadow-lg"><img src="fotos_pelu/cambio 4.jpeg" alt="Trabajo de peluquería" class="object-cover w-full h-full"></div>
+                    </div>
             </div>
         </section>
 
         <section class="py-20 sm:py-24 bg-[#F5F1E9]">
             <div class="max-w-screen-md mx-auto px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold">¿Te sientes inspirada?</h2>
-                <p class="mt-4 text-lg text-[#6B5E4F]">Si has visto un estilo que te encanta o quieres que te asesoremos para encontrar tu próximo look, no dudes en pedir cita. ¡Estamos aquí para ayudarte a brillar!</p>
-                <a href="#" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105 js-pedir-cita">
-                    Reservar mi Cita
-                </a>
+                <a href="agenda.html" class="mt-8 inline-block btn-accent font-bold py-3 px-8 rounded-lg text-lg transform hover:scale-105">Reservar mi Cita</a>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[#FDFBF6] border-t border-[var(--border-warm)]">
-        <div class="max-w-screen-xl mx-auto px-6 lg:px-8 py-8 text-center text-[#8C7D6B]">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.facebook.com/yoselinmagiaycolor" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.03998C6.48 2.03998 2 6.51998 2 12.04C2 17.56 6.48 22.04 12 22.04C17.52 22.04 22 17.56 22 12.04C22 6.51998 17.52 2.03998 12 2.03998ZM13.5 8.03998H15V11.04H13.5V16.04H11V11.04H9V8.03998H11V6.53998C11 5.05998 11.81 4.03998 13.5 4.03998V8.03998Z"></path></svg></a>
-                <a href="https://www.instagram.com/yoselinmagiaycolor/" target="_blank" class="hover:text-[#3A3226]"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
-            </div>
-            <div class="text-sm space-x-4 mb-4">
-                <a href="aviso-legal.html" class="hover:text-[#3A3226] transition-colors">Aviso Legal</a>
-                <span>|</span>
-                <a href="politica-de-privacidad.html" class="hover:text-[#3A3226] transition-colors">Política de Privacidad</a>
-                <span>|</span>
-                <a href="politica-de-cookies.html" class="hover:text-[#3A3226] transition-colors">Política de Cookies</a>
-            </div>
-            <p class="mt-4 text-[#6B5E4F]">© 2025 Yoselin Magia y Color Peluquería Estética Unisex. Todos los derechos reservados.</p>
-            <p class="text-sm text-[#8C7D6B] mt-2">Diseño web por NEXMAIA</p>
-        </div>
-    </footer>
-
-    <!-- =================================================================
-        HTML DEL CHAT (Se inserta aquí, antes de cerrar el body)
-    ================================================================== -->
-    <div id="chat-toggle-button" title="Abrir Chat">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-    </div>
-    <div id="chat-container">
-        <div id="chat-header">
-            <h3>Asistente Virtual</h3>
-            <button id="close-chat-btn" title="Cerrar Chat">&times;</button>
-        </div>
-        <div id="chat-messages-container">
-            <div class="message bot-message">
-                ¡Hola! Soy el asistente de Yoselin Magia y Color. ¿Cómo puedo ayudarte hoy?
-            </div>
-        </div>
-        <div id="chat-input-area">
-            <input type="text" id="user-chat-input" placeholder="Escribe un mensaje...">
-            <button id="send-chat-button" title="Enviar Mensaje">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            </button>
-        </div>
-    </div>
-    <div id="imageModal" class="fixed inset-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center p-4 hidden z-[10000]">
-    <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto relative">
-        <button id="closeModalBtn" class="absolute top-2 right-4 text-black text-4xl font-bold hover:text-red-500 z-10">&times;</button>
-        <h3 class="text-2xl font-bold p-4 border-b">Antes y Después</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
-            <div>
-                <p class="text-center font-semibold mb-2">ANTES</p>
-                <img src="fotos_pelu/antes.jfif" alt="Estado anterior del cabello" class="rounded-md w-full">
-            </div>
-            <div>
-                <p class="text-center font-semibold mb-2">DESPUÉS</p>
-                <img src="fotos_pelu/Cambio.jfif" alt="Resultado final del trabajo" class="rounded-md w-full">
+    <div id="imageModal" class="fixed inset-0 w-full h-full bg-black bg-opacity-80 flex justify-center items-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full overflow-y-auto relative">
+            <button id="closeModalBtn" class="absolute top-2 right-4 text-black text-4xl font-bold hover:text-red-500 z-10">&times;</button>
+            <h3 class="text-2xl font-bold p-4 border-b">Antes y Después</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
+                <div>
+                    <p class="text-center font-semibold mb-2">ANTES</p>
+                    <img src="fotos_pelu/antes.jfif" alt="Estado anterior del cabello" class="rounded-md w-full">
+                </div>
+                <div>
+                    <p class="text-center font-semibold mb-2">DESPUÉS</p>
+                    <img src="fotos_pelu/Cambio.jfif" alt="Resultado final del trabajo" class="rounded-md w-full">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <!-- =================================================================
-        JAVASCRIPT (Lógica de la página y del Chat)
-    ================================================================== -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    <div id="footer-placeholder"></div>
+    <div id="chat-placeholder"></div>
 
-            // --- LÓGICA GENERAL DE LA PÁGINA (MENÚ, SCROLL) ---
-            const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
-            const navbar = document.getElementById('navbar-sticky');
-            if (menuButton) {
-                menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-            }
-
-            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href.startsWith('#')) {
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        if (targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-                });
-            });
-            // --- LÓGICA DEL MODAL DE LA GALERÍA ---
-const openModalBtn = document.getElementById('openModalBtn');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const imageModal = document.getElementById('imageModal');
-
-if (openModalBtn && closeModalBtn && imageModal) {
-    const openModal = () => imageModal.classList.remove('hidden');
-    const closeModal = () => imageModal.classList.add('hidden');
-
-    openModalBtn.addEventListener('click', openModal);
-    closeModalBtn.addEventListener('click', closeModal);
-    
-    imageModal.addEventListener('click', (event) => {
-        if (event.target === imageModal) closeModal();
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !imageModal.classList.contains('hidden')) {
-            closeModal();
-        }
-    });
-}
-            
-
-            // --- LÓGICA DEL CHAT ---
-            const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
-            const chatContainer = document.getElementById('chat-container');
-            const chatToggleButton = document.getElementById('chat-toggle-button');
-            const closeChatBtn = document.getElementById('close-chat-btn');
-            const chatMessages = document.getElementById('chat-messages-container');
-            const userInput = document.getElementById('user-chat-input');
-            const sendButton = document.getElementById('send-chat-button');
-            const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
-
-            let sessionId = localStorage.getItem('chatSessionId');
-            if (!sessionId) {
-                sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-                localStorage.setItem('chatSessionId', sessionId);
-            }
-
-            const openChat = () => {
-                chatContainer.classList.add('visible');
-                chatToggleButton.style.opacity = '0';
-                chatToggleButton.style.pointerEvents = 'none';
-                userInput.focus();
-            };
-
-            const closeChat = () => {
-                chatContainer.classList.remove('visible');
-                chatToggleButton.style.opacity = '1';
-                chatToggleButton.style.pointerEvents = 'auto';
-            };
-
-            const addMessage = (text, className) => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', className);
-                messageElement.textContent = text;
-                chatMessages.appendChild(messageElement);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                return messageElement;
-            };
-
-            const handleSendMessage = async () => {
-                const messageText = userInput.value.trim();
-                if (messageText === '') return;
-
-                addMessage(messageText, 'user-message');
-                userInput.value = '';
-                const typingIndicator = addMessage('Asistente está escribiendo...', 'typing-indicator');
-
-                try {
-                    const response = await fetch(webhookUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            chatInput: messageText,
-                            sessionId: sessionId
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`Error de red: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-                    console.log("Respuesta completa de n8n:", data);
-
-                    if (typingIndicator && typingIndicator.parentNode) {
-                        chatMessages.removeChild(typingIndicator);
-                    }
-
-                    if (data && data.text) {
-                        addMessage(data.text, 'bot-message');
-                    } else {
-                        addMessage('Lo siento, he tenido un problema para procesar tu solicitud.', 'bot-message');
-                    }
-                } catch (error) {
-                    console.error('Error al contactar con el asistente:', error);
-                    if (typingIndicator && typingIndicator.parentNode) {
-                        chatMessages.removeChild(typingIndicator);
-                    }
-                    addMessage('Ups, parece que hay un problema de conexión. Por favor, inténtalo de nuevo.', 'bot-message');
-                }
-            };
-
-            chatToggleButton.addEventListener('click', openChat);
-            closeChatBtn.addEventListener('click', closeChat);
-            sendButton.addEventListener('click', handleSendMessage);
-            userInput.addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    handleSendMessage();
-                }
-            });
-
-            pedirCitaButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openChat();
-                    setTimeout(() => {
-                        userInput.value = 'Hola, me gustaría pedir una cita.';
-                        userInput.focus();
-                    }, 300);
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
