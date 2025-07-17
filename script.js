@@ -137,26 +137,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- LÓGICA DEL SISTEMA DE RESERVAS (PÁGINA DE AGENDA) ---
-    const initBookingSystem = () => {
-        const datePicker = document.getElementById('date-picker');
-        if (!datePicker) return;
+const initBookingSystem = () => {
+    const datePicker = document.getElementById('date-picker');
+    if (!datePicker) return;
 
-        // URLs de tus webhooks de n8n
-        const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/18d65326-e3c6-4d33-8354-b813b6f2d8d4';
-        const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
-        const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
+    // URLs de tus webhooks de n8n
+    const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/18d65326-e3c6-4d33-8354-b813b6f2d8d4';
+    const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
+    const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
 
-        const serviceSelect = document.getElementById('service');
-        const timeSlotsContainer = document.getElementById('time-slots-container');
-        const timeSlotsGrid = document.getElementById('time-slots-grid');
-        const loader = document.getElementById('loader');
-        const bookingFormContainer = document.getElementById('booking-form-container');
-        const bookingForm = document.getElementById('booking-form');
-        const responseMessage = document.getElementById('response-message');
-        
-        let selectedTime = null;
+    const serviceSelect = document.getElementById('service');
+    const timeSlotsContainer = document.getElementById('time-slots-container');
+    const timeSlotsGrid = document.getElementById('time-slots-grid');
+    const loader = document.getElementById('loader');
+    const bookingFormContainer = document.getElementById('booking-form-container');
+    const bookingForm = document.getElementById('booking-form');
+    const responseMessage = document.getElementById('response-message');
+    
+    let selectedTime = null;
 
-        const loadServices = async () => {
+    // Se define la función que carga los servicios
+    const loadServices = async () => {
         try {
             const response = await fetch(GET_SERVICES_URL);
             if (!response.ok) throw new Error('No se pudieron cargar los servicios.');
@@ -172,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 option.textContent = serviceName;
                 serviceSelect.appendChild(option);
             });
+            
+            // La llamada incorrecta ha sido eliminada de aquí
 
         } catch (error) {
             serviceSelect.innerHTML = '<option value="">Error al cargar servicios</option>';
@@ -179,95 +182,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-        datePicker.addEventListener('change', async () => {
-            const selectedDate = datePicker.value;
-            if (!selectedDate) return;
+    loadServices();
+    
+    datePicker.addEventListener('change', async () => {
+        const selectedDate = datePicker.value;
+        if (!selectedDate) return;
 
-            timeSlotsGrid.innerHTML = '';
-            bookingFormContainer.classList.add('hidden');
-            responseMessage.innerHTML = '';
-            timeSlotsContainer.classList.remove('hidden');
-            loader.classList.remove('hidden');
+        timeSlotsGrid.innerHTML = '';
+        bookingFormContainer.classList.add('hidden');
+        responseMessage.innerHTML = '';
+        timeSlotsContainer.classList.remove('hidden');
+        loader.classList.remove('hidden');
 
-            try {
-                const response = await fetch(GET_AVAILABILITY_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ date: selectedDate })
-                });
-                if (!response.ok) throw new Error('Error al cargar la disponibilidad.');
-                
-                const data = await response.json();
-                const availableTimes = data.availableSlots || data; // Compatibilidad con ambas respuestas
-                
-                loader.classList.add('hidden');
-                
-                if (!availableTimes || availableTimes.length === 0) {
-                    timeSlotsGrid.innerHTML = '<p class="col-span-full text-center">No hay horas disponibles. Elige otra fecha.</p>';
-                    return;
-                }
-
-                availableTimes.forEach(time => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.textContent = time;
-                    btn.className = 'p-3 border rounded-lg time-slot-btn hover:bg-gray-200';
-                    btn.dataset.time = time;
-                    btn.addEventListener('click', () => {
-                        const prevSelected = document.querySelector('.time-slot-btn.selected');
-                        if (prevSelected) prevSelected.classList.remove('selected');
-                        btn.classList.add('selected');
-                        selectedTime = btn.dataset.time;
-                        bookingFormContainer.classList.remove('hidden');
-                    });
-                    timeSlotsGrid.appendChild(btn);
-                });
-
-            } catch (error) {
-                loader.classList.add('hidden');
-                timeSlotsGrid.innerHTML = `<p class="col-span-full text-center text-red-500">${error.message}</p>`;
+        try {
+            const response = await fetch(GET_AVAILABILITY_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ date: selectedDate })
+            });
+            if (!response.ok) throw new Error('Error al cargar la disponibilidad.');
+            
+            const data = await response.json();
+            const availableTimes = data.availableSlots || data;
+            
+            loader.classList.add('hidden');
+            
+            if (!availableTimes || availableTimes.length === 0) {
+                timeSlotsGrid.innerHTML = '<p class="col-span-full text-center">No hay horas disponibles. Elige otra fecha.</p>';
+                return;
             }
-        });
 
-        bookingForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            responseMessage.innerHTML = '<p>Procesando tu reserva...</p>';
-
-            const formData = new FormData(bookingForm);
-            const bookingData = {
-                date: datePicker.value,
-                time: selectedTime,
-                service: formData.get('service'),
-                name: formData.get('name'),
-                email: formData.get('email')
-            };
-
-            try {
-                const response = await fetch(CREATE_BOOKING_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(bookingData)
+            availableTimes.forEach(time => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.textContent = time;
+                btn.className = 'p-3 border rounded-lg time-slot-btn hover:bg-gray-200';
+                btn.dataset.time = time;
+                btn.addEventListener('click', () => {
+                    const prevSelected = document.querySelector('.time-slot-btn.selected');
+                    if (prevSelected) prevSelected.classList.remove('selected');
+                    btn.classList.add('selected');
+                    selectedTime = btn.dataset.time;
+                    bookingFormContainer.classList.remove('hidden');
                 });
-                if (!response.ok) throw new Error('No se pudo completar la reserva.');
+                timeSlotsGrid.appendChild(btn);
+            });
 
-                const result = await response.json();
-                bookingForm.style.display = 'none';
-                timeSlotsContainer.style.display = 'none';
-                datePicker.style.display = 'none';
-                
-                document.querySelector('#booking-system').innerHTML = `
-                    <div class="text-center bg-green-50 p-8 rounded-lg">
-                        <h2 class="text-2xl font-bold text-green-700">¡Reserva Confirmada!</h2>
-                        <p class="mt-2 text-green-600">${result.message || 'Recibirás un email con los detalles.'}</p>
-                        <a href="index.html" class="mt-6 inline-block btn-accent">Volver al Inicio</a>
-                    </div>`;
+        } catch (error) {
+            loader.classList.add('hidden');
+            timeSlotsGrid.innerHTML = `<p class="col-span-full text-center text-red-500">${error.message}</p>`;
+        }
+    });
 
-            } catch (error) {
-                responseMessage.innerHTML = `<p class="text-red-500 font-bold">${error.message}</p>`;
-            }
-        });
-    };
+    bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        responseMessage.innerHTML = '<p>Procesando tu reserva...</p>';
 
+        const formData = new FormData(bookingForm);
+        const bookingData = {
+            date: datePicker.value,
+            time: selectedTime,
+            service: formData.get('service'),
+            name: formData.get('name'),
+            email: formData.get('email')
+        };
+
+        try {
+            const response = await fetch(CREATE_BOOKING_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bookingData)
+            });
+            if (!response.ok) throw new Error('No se pudo completar la reserva.');
+
+            const result = await response.json();
+            bookingForm.style.display = 'none';
+            timeSlotsContainer.style.display = 'none';
+            datePicker.style.display = 'none';
+            
+            document.querySelector('#booking-system').innerHTML = `
+                <div class="text-center bg-green-50 p-8 rounded-lg">
+                    <h2 class="text-2xl font-bold text-green-700">¡Reserva Confirmada!</h2>
+                    <p class="mt-2 text-green-600">${result.message || 'Recibirás un email con los detalles.'}</p>
+                    <a href="index.html" class="mt-6 inline-block btn-accent">Volver al Inicio</a>
+                </div>`;
+
+        } catch (error) {
+            responseMessage.innerHTML = `<p class="text-red-500 font-bold">${error.message}</p>`;
+        }
+    });
+};
     // --- LÓGICA DEL CHAT ---
     const initChat = () => {
         const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
