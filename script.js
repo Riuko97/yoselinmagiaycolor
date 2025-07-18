@@ -157,32 +157,24 @@ const initBookingSystem = () => {
     let selectedTime = null;
 
     // Se define la función que carga los servicios
-    const loadServices = async () => {
-        try {
-            const response = await fetch(GET_SERVICES_URL);
-            if (!response.ok) throw new Error('No se pudieron cargar los servicios.');
-
-            const data = await response.json();
-            const services = data.services || [];
-
-            serviceSelect.innerHTML = '<option value="">-- Elige un servicio --</option>';
-
-            services.forEach(serviceName => {
-                const option = document.createElement('option');
-                option.value = serviceName;
-                option.textContent = serviceName;
-                serviceSelect.appendChild(option);
-            });
+    fetch(webhookUrl)
+        .then(response => response.json())
+        .then(data => {
+            const lista = document.getElementById('mi-lista');
             
-            // La llamada incorrecta ha sido eliminada de aquí
+            // Accedemos a la lista de servicios dentro del objeto "data"
+            const servicios = data.services;
 
-        } catch (error) {
-            serviceSelect.innerHTML = '<option value="">Error al cargar servicios</option>';
-            console.error(error);
-        }
-    };
-
-    loadServices();
+            // Recorremos la lista de servicios
+            servicios.forEach(servicio => {
+                const listItem = document.createElement('li');
+                listItem.textContent = servicio; // El item ya es el nombre del servicio
+                lista.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los datos:', error);
+        });
     
     datePicker.addEventListener('change', async () => {
         const selectedDate = datePicker.value;
