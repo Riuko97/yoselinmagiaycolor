@@ -135,9 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
-
-    // --- LÓGICA DEL SISTEMA DE RESERVAS (PÁGINA DE AGENDA) ---
-const initBookingSystem = () => {
+    const initBookingSystem = () => {
     const datePicker = document.getElementById('date-picker');
     if (!datePicker) return;
 
@@ -156,27 +154,27 @@ const initBookingSystem = () => {
     
     let selectedTime = null;
 
-    // Se define la función que carga los servicios
+    // Carga los servicios al iniciar la página
     const loadServices = async () => {
         try {
             const response = await fetch(GET_SERVICES_URL);
-            if (!response.ok) throw new Error('No se pudieron cargar los servicios.');
+            if (!response.ok) {
+                // Si falla, lanzamos un error simple
+                throw new Error('No se pudieron cargar los servicios.');
+            }
 
             const data = await response.json();
             const services = data.services || [];
 
             serviceSelect.innerHTML = '<option value="">-- Elige un servicio --</option>';
-
             services.forEach(serviceName => {
                 const option = document.createElement('option');
                 option.value = serviceName;
                 option.textContent = serviceName;
                 serviceSelect.appendChild(option);
             });
-            
-            // La llamada incorrecta ha sido eliminada de aquí
-
         } catch (error) {
+            // El catch original y correcto para esta parte
             serviceSelect.innerHTML = '<option value="">Error al cargar servicios</option>';
             console.error(error);
         }
@@ -184,6 +182,7 @@ const initBookingSystem = () => {
 
     loadServices();
     
+    // Carga las horas disponibles al cambiar la fecha
     datePicker.addEventListener('change', async () => {
         const selectedDate = datePicker.value;
         if (!selectedDate) return;
@@ -200,7 +199,11 @@ const initBookingSystem = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ date: selectedDate })
             });
-            if (!response.ok) throw new Error('Error al cargar la disponibilidad.');
+            
+            if (!response.ok) {
+                 // Si falla, lanzamos un error simple
+                throw new Error('Error al cargar la disponibilidad.');
+            }
             
             const data = await response.json();
             const availableTimes = data.availableSlots || data;
@@ -219,8 +222,7 @@ const initBookingSystem = () => {
                 btn.className = 'p-3 border rounded-lg time-slot-btn hover:bg-gray-200';
                 btn.dataset.time = time;
                 btn.addEventListener('click', () => {
-                    const prevSelected = document.querySelector('.time-slot-btn.selected');
-                    if (prevSelected) prevSelected.classList.remove('selected');
+                    document.querySelectorAll('.time-slot-btn.selected').forEach(b => b.classList.remove('selected'));
                     btn.classList.add('selected');
                     selectedTime = btn.dataset.time;
                     bookingFormContainer.classList.remove('hidden');
@@ -229,11 +231,13 @@ const initBookingSystem = () => {
             });
 
         } catch (error) {
+            // El catch original y correcto para esta parte
             loader.classList.add('hidden');
             timeSlotsGrid.innerHTML = `<p class="col-span-full text-center text-red-500">${error.message}</p>`;
         }
     });
 
+    // Envía el formulario para crear la reserva
     bookingForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         responseMessage.innerHTML = '<p>Procesando tu reserva...</p>';
@@ -253,12 +257,15 @@ const initBookingSystem = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(bookingData)
             });
-            if (!response.ok) throw new Error('No se pudo completar la reserva.');
+
+            // ✅ ESTA ES LA FORMA CORRECTA DE MANEJAR EL ERROR ESPECIALIZADO
+            if (!response.ok) {
+                const errorData = await response.json();
+                // Lanzamos un nuevo error con el mensaje específico de n8n
+                throw new Error(errorData.error || 'No se pudo completar la reserva.');
+            }
 
             const result = await response.json();
-            bookingForm.style.display = 'none';
-            timeSlotsContainer.style.display = 'none';
-            datePicker.style.display = 'none';
             
             document.querySelector('#booking-system').innerHTML = `
                 <div class="text-center bg-green-50 p-8 rounded-lg">
@@ -268,6 +275,7 @@ const initBookingSystem = () => {
                 </div>`;
 
         } catch (error) {
+            // Ahora este catch recibe el mensaje de error correcto y específico
             responseMessage.innerHTML = `<p class="text-red-500 font-bold">${error.message}</p>`;
         }
     });
