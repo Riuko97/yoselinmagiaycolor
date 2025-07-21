@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!datePicker) return;
 
     // URLs de tus webhooks de n8n
-    const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/18d65326-e3c6-4d33-8354-b813b6f2d8d4';
+    const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
     const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
     const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
 
