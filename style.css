@@ -241,3 +241,81 @@ h1, h2, h3, .font-playfair {
 #send-chat-button:hover {
     background-color: var(--accent-color-dark);
 }
+ /* Estilos del panel emergente (modal) */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Fijo en la pantalla */
+            z-index: 1000; /* Por encima de otros elementos */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Permite desplazamiento si el contenido es largo */
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+            backdrop-filter: blur(5px); /* Efecto de desenfoque en el fondo */
+            -webkit-backdrop-filter: blur(5px); /* Para compatibilidad con Safari */
+        }
+
+        .modal-content {
+            background-color: #fefefe; /* Fondo blanco del contenido */
+            margin: 15% auto; /* Centra el modal vertical y horizontalmente */
+            padding: 25px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 450px; /* Ancho máximo para el contenido */
+            border-radius: 12px; /* Esquinas redondeadas */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            font-family: Arial, sans-serif; /* Fuente del texto */
+            text-align: center;
+            animation: fadeInScale 0.4s ease-out; /* Animación de aparición */
+        }
+        
+        /* Animación para la aparición del modal */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .modal-header {
+            border-bottom: 1px solid #ddd; /* Línea separadora en el encabezado */
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-header h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .modal-body p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .modal-body strong {
+            color: #d9534f; /* Color para texto resaltado, como "Estamos de vacaciones." */
+        }

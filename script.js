@@ -367,3 +367,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initBookingSystem();
     // initChat y initMobileMenu son llamados desde el cargador de componentes
 });
+   // Fechas de inicio y fin de las vacaciones.
+    // Configurado para Agosto de 2025.
+    const startDate = new Date('2025-08-19T00:00:00'); // 19 de agosto de 2025, 00:00:00
+    const endDate = new Date('2025-09-02T23:59:59');   // 2 de septiembre de 2025, 23:59:59
+    const now = new Date(); // Fecha y hora actual
+
+    // Obtener una referencia al elemento modal y al botón de cierre
+    const modal = document.getElementById('vacationModal');
+    const closeBtn = document.getElementsByClassName('close-btn')[0];
+
+    // Función para mostrar el modal si la fecha actual está dentro del período de vacaciones
+    function showModalIfOnVacation() {
+        if (now >= startDate && now <= endDate) {
+            modal.style.display = 'block'; // Muestra el modal
+        }
+    }
+
+    // Cuando el usuario hace clic en el botón de cierre (X), el modal se oculta
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    // Cuando el usuario hace clic en cualquier lugar fuera del contenido del modal, el modal también se oculta
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Llama a la función para verificar y mostrar el modal cuando la página se carga
+    showModalIfOnVacation();
