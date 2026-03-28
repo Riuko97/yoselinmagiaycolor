@@ -1,56 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- CARGADOR DE COMPONENTES (NAV, FOOTER, CHAT) ---
-    const loadComponent = (url, placeholderId) => {
+    // --- CARGADOR DE COMPONENTES (NAV, FOOTER) ---
+    const loadComponent = (url, placeholderId, callback) => {
         const placeholder = document.getElementById(placeholderId);
-        if (placeholder) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    placeholder.innerHTML = data;
-                    // Re-ejecutar scripts específicos después de cargar componentes
-                    if (placeholderId === 'navbar-placeholder') initMobileMenu();
-                    if (placeholderId === 'chat-placeholder') initChat();
-                })
-                .catch(error => console.error(`Error loading ${url}:`, error));
-        }
+        if (!placeholder) return;
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+                return response.text();
+            })
+            .then(data => {
+                placeholder.innerHTML = data;
+                if (callback) callback();
+            })
+            .catch(error => console.error(error));
     };
-    
-    loadComponent('nav.html', 'navbar-placeholder');
-    loadComponent('footer.html', 'footer-placeholder');
-    loadComponent('chat.html', 'chat-placeholder');
 
-    // --- INICIALIZADOR DEL MENÚ MÓVIL ---
-    const initMobileMenu = () => {
+    loadComponent('nav.html', 'navbar-placeholder', initMobileMenu);
+    loadComponent('footer.html', 'footer-placeholder', initCookieBanner);
+
+    // --- MENÚ MÓVIL ---
+    function initMobileMenu() {
         const menuButton = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
         const navbar = document.getElementById('navbar-sticky');
-        if (menuButton && navbar) {
-            menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
-            
-            // Marcar el enlace activo
-            const navLinks = navbar.querySelectorAll('.nav-link');
-            const currentPage = window.location.pathname.split('/').pop();
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.setAttribute('aria-current', 'page');
-                }
-            });
-        }
-    };
+        if (!menuButton || !navbar) return;
+
+        menuButton.addEventListener('click', () => navbar.classList.toggle('hidden'));
+
+        const currentPage = window.location.pathname.split('/').pop();
+        navbar.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+    }
 
     // --- SMOOTH SCROLL PARA ANCLAS ---
     document.body.addEventListener('click', (e) => {
-        if (e.target.matches('a[href^="#"]')) {
+        const anchor = e.target.closest('a[href^="#"]');
+        if (!anchor) return;
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
+            targetElement.scrollIntoView({ behavior: 'smooth' });
         }
     });
 
-    // --- LÓGICA DEL CARRUSEL (PÁGINA DE INICIO) ---
+    // --- CARRUSEL ---
     const initCarousel = () => {
         const track = document.getElementById('carousel-track');
         if (!track) return;
@@ -58,14 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const items = track.querySelectorAll('.carousel-item');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        
-        if (items.length === 0) return;
+        if (items.length === 0 || !prevBtn || !nextBtn) return;
 
         let currentIndex = 0;
         const totalItems = items.length;
 
         const updateCarousel = () => {
-            const itemWidth = track.querySelector('.carousel-item').clientWidth;
+            const itemWidth = items[0].clientWidth;
             track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
         };
 
@@ -78,33 +75,57 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex = (currentIndex - 1 + totalItems) % totalItems;
             updateCarousel();
         });
-        
+
         window.addEventListener('resize', updateCarousel);
-        updateCarousel(); // initial call
+        updateCarousel();
     };
-    
-    // --- LÓGICA DEL MODAL "ANTES Y DESPUÉS" (PÁGINA DE GALERÍA) ---
-    const initImageModal = () => {
-        const openModalBtn = document.getElementById('openModalBtn');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const imageModal = document.getElementById('imageModal');
-        
-        if (!openModalBtn || !closeModalBtn || !imageModal) return;
 
-        const openModal = () => imageModal.classList.remove('hidden');
-        const closeModal = () => imageModal.classList.add('hidden');
+    // --- LIGHTBOX DE GALERÍA ---
+    const initGalleryLightbox = () => {
+        const items = [...document.querySelectorAll('.gallery-item')];
+        if (items.length === 0) return;
 
-        openModalBtn.addEventListener('click', openModal);
-        closeModalBtn.addEventListener('click', closeModal);
-        imageModal.addEventListener('click', (event) => {
-            if (event.target === imageModal) closeModal();
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && !imageModal.classList.contains('hidden')) closeModal();
+        const lightbox     = document.getElementById('lightbox');
+        const lightboxImg  = document.getElementById('lightbox-img');
+        const counter      = document.getElementById('lightbox-counter');
+        const closeBtn     = document.getElementById('lightbox-close');
+        const prevBtn      = document.getElementById('lightbox-prev');
+        const nextBtn      = document.getElementById('lightbox-next');
+        if (!lightbox || !lightboxImg) return;
+
+        let current = 0;
+
+        const open = (index) => {
+            current = ((index % items.length) + items.length) % items.length;
+            const src = items[current].dataset.src;
+            const alt = items[current].querySelector('img').alt;
+            lightboxImg.src = src;
+            lightboxImg.alt = alt;
+            counter.textContent = `${current + 1} / ${items.length}`;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const close = () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        };
+
+        items.forEach((item, i) => item.addEventListener('click', () => open(i)));
+        closeBtn.addEventListener('click', close);
+        prevBtn.addEventListener('click', () => open(current - 1));
+        nextBtn.addEventListener('click', () => open(current + 1));
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape')      close();
+            if (e.key === 'ArrowLeft')   open(current - 1);
+            if (e.key === 'ArrowRight')  open(current + 1);
         });
     };
-    
-    // --- LÓGICA DE DESPLEGABLES (PÁGINA DE SERVICIOS) ---
+
+    // --- DESPLEGABLES (SERVICIOS) ---
     const initServiceAccordions = () => {
         const serviceItems = document.querySelectorAll('.service-item button');
         if (serviceItems.length === 0) return;
@@ -113,9 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 const details = button.nextElementSibling;
                 const icon = button.querySelector('svg');
-                const isCurrentlyOpen = details.style.maxHeight;
+                const isOpen = details.style.maxHeight;
 
-                // Cierra todos los demás
                 document.querySelectorAll('.service-item .service-details').forEach(d => {
                     if (d !== details) {
                         d.style.maxHeight = null;
@@ -124,277 +144,314 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Abre/cierra el actual
-                if (isCurrentlyOpen) {
+                if (isOpen) {
                     details.style.maxHeight = null;
                     if (icon) icon.style.transform = 'rotate(0deg)';
                 } else {
-                    details.style.maxHeight = details.scrollHeight + "px";
+                    details.style.maxHeight = details.scrollHeight + 'px';
                     if (icon) icon.style.transform = 'rotate(180deg)';
                 }
             });
         });
     };
+
+    // =====================================================================
+    // --- SISTEMA DE RESERVAS CON GOOGLE CALENDAR ---
+    // =====================================================================
     const initBookingSystem = () => {
-    const datePicker = document.getElementById('date-picker');
-    if (!datePicker) return;
+        // Comprueba que estamos en la página de agenda
+        if (!document.getElementById('step-1')) return;
 
-    // URLs de tus webhooks de n8n
-    const GET_AVAILABILITY_URL = 'https://nexmaia.app.n8n.cloud/webhook/04ea4a45-848b-423b-b332-4190a61e9313';
-    const GET_SERVICES_URL = 'https://nexmaia.app.n8n.cloud/webhook/18d65326-e3c6-4d33-8354-b813b6f2d8d4';
-    const CREATE_BOOKING_URL = 'https://nexmaia.app.n8n.cloud/webhook/d4f6ad0b-b8c9-47a7-949d-08ca79bac86c';
+        // ⚠ IMPORTANTE: Pega aquí la URL de tu Google Apps Script desplegado.
+        // Instrucciones en el archivo google-apps-script.js
+        const APPS_SCRIPT_URL = 'PEGA_AQUI_TU_URL_DE_GOOGLE_APPS_SCRIPT';
 
-    const serviceSelect = document.getElementById('service');
-    const timeSlotsContainer = document.getElementById('time-slots-container');
-    const timeSlotsGrid = document.getElementById('time-slots-grid');
-    const loader = document.getElementById('loader');
-    const bookingFormContainer = document.getElementById('booking-form-container');
-    const bookingForm = document.getElementById('booking-form');
-    const responseMessage = document.getElementById('response-message');
-    
-    let selectedTime = null;
+        // Días cerrados: 0 = Domingo, 1 = Lunes
+        const DIAS_CERRADOS = [0, 1];
 
-    // Carga los servicios al iniciar la página
-    const loadServices = async () => {
-        try {
-            const response = await fetch(GET_SERVICES_URL);
-            if (!response.ok) {
-                // Si falla, lanzamos un error simple
-                throw new Error('No se pudieron cargar los servicios.');
+        // Estado del formulario
+        const state = {
+            service: '',
+            date: '',
+            time: '',
+            name: '',
+            phone: '',
+            email: '',
+        };
+
+        // ── Elementos del DOM ──────────────────────────────────────────
+        const step1    = document.getElementById('step-1');
+        const step2    = document.getElementById('step-2');
+        const step3    = document.getElementById('step-3');
+        const step4    = document.getElementById('step-4');
+        const stepOk   = document.getElementById('step-success');
+
+        const servicesList    = document.getElementById('services-list');
+        const servicesLoading = document.getElementById('services-loading');
+        const servicesError   = document.getElementById('services-error');
+
+        const datePicker      = document.getElementById('date-picker');
+        const dateClosedMsg   = document.getElementById('date-closed-msg');
+        const timeSlotsSection = document.getElementById('time-slots-section');
+        const timeSlotsGrid   = document.getElementById('time-slots-grid');
+        const slotsLoader     = document.getElementById('slots-loader');
+        const noSlotsMsg      = document.getElementById('no-slots-msg');
+
+        const bookingForm   = document.getElementById('booking-form');
+        const goToStep4Btn  = document.getElementById('go-to-step-4');
+        const confirmBtn    = document.getElementById('confirm-booking-btn');
+        const bookingResponse = document.getElementById('booking-response');
+
+        // ── Navegación entre pasos ──────────────────────────────────────
+        const showStep = (n) => {
+            [step1, step2, step3, step4, stepOk].forEach(s => s && s.classList.add('hidden'));
+            const steps = { 1: step1, 2: step2, 3: step3, 4: step4, 5: stepOk };
+            if (steps[n]) steps[n].classList.remove('hidden');
+            updateStepIndicator(n);
+        };
+
+        const updateStepIndicator = (current) => {
+            for (let i = 1; i <= 4; i++) {
+                const ind = document.getElementById(`step-ind-${i}`);
+                if (!ind) continue;
+                ind.classList.remove('active', 'done');
+                if (i < current) ind.classList.add('done');
+                else if (i === current) ind.classList.add('active');
             }
-
-            const data = await response.json();
-            const services = data.services || [];
-
-            serviceSelect.innerHTML = '<option value="">-- Elige un servicio --</option>';
-            services.forEach(serviceName => {
-                const option = document.createElement('option');
-                option.value = serviceName;
-                option.textContent = serviceName;
-                serviceSelect.appendChild(option);
-            });
-        } catch (error) {
-            // El catch original y correcto para esta parte
-            serviceSelect.innerHTML = '<option value="">Error al cargar servicios</option>';
-            console.error(error);
-        }
-    };
-
-    loadServices();
-    
-    // Carga las horas disponibles al cambiar la fecha
-    datePicker.addEventListener('change', async () => {
-        const selectedDate = datePicker.value;
-        if (!selectedDate) return;
-
-        timeSlotsGrid.innerHTML = '';
-        bookingFormContainer.classList.add('hidden');
-        responseMessage.innerHTML = '';
-        timeSlotsContainer.classList.remove('hidden');
-        loader.classList.remove('hidden');
-
-        try {
-            const response = await fetch(GET_AVAILABILITY_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ date: selectedDate })
-            });
-            
-            if (!response.ok) {
-                 // Si falla, lanzamos un error simple
-                throw new Error('Error al cargar la disponibilidad.');
+            for (let i = 1; i <= 3; i++) {
+                const div = document.getElementById(`div-${i}-${i + 1}`);
+                if (div) div.classList.toggle('done', i < current);
             }
-            
-            const data = await response.json();
-            const availableTimes = data.availableSlots || data;
-            
-            loader.classList.add('hidden');
-            
-            if (!availableTimes || availableTimes.length === 0) {
-                timeSlotsGrid.innerHTML = '<p class="col-span-full text-center">No hay horas disponibles. Elige otra fecha.</p>';
+        };
+
+        document.getElementById('back-to-step-1').addEventListener('click', () => showStep(1));
+        document.getElementById('back-to-step-2').addEventListener('click', () => showStep(2));
+        document.getElementById('back-to-step-3').addEventListener('click', () => showStep(3));
+
+        // ── Paso 1: Cargar y mostrar servicios ──────────────────────────
+        const loadServices = async () => {
+            try {
+                const res  = await fetch(APPS_SCRIPT_URL + '?action=services');
+                const data = await res.json();
+                if (!data.success) throw new Error(data.error);
+
+                servicesLoading.classList.add('hidden');
+                servicesList.classList.remove('hidden');
+
+                data.services.forEach(svc => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.textContent = svc;
+                    btn.className = 'w-full text-left p-4 bg-white border-2 border-gray-200 rounded-lg hover:border-[#C09553] hover:text-[#C09553] transition-all font-medium';
+                    btn.addEventListener('click', () => {
+                        state.service = svc;
+                        document.getElementById('summary-service-name').textContent = svc;
+                        document.getElementById('summary-service-2').textContent = svc;
+                        // Bloquear fechas pasadas y de hoy en adelante
+                        const today = new Date().toISOString().split('T')[0];
+                        datePicker.min = today;
+                        showStep(2);
+                    });
+                    servicesList.appendChild(btn);
+                });
+            } catch (err) {
+                servicesLoading.classList.add('hidden');
+                servicesError.classList.remove('hidden');
+                servicesError.textContent = 'No se pudieron cargar los servicios. Llámanos al 935 88 76 86.';
+                console.error(err);
+            }
+        };
+
+        loadServices();
+
+        // ── Paso 2: Seleccionar fecha ────────────────────────────────────
+        datePicker.addEventListener('change', async () => {
+            const selectedDate = datePicker.value;
+            if (!selectedDate) return;
+
+            // Comprobar si el día está cerrado
+            const diaSemana = new Date(selectedDate + 'T12:00:00').getDay();
+            dateClosedMsg.classList.toggle('hidden', !DIAS_CERRADOS.includes(diaSemana));
+            if (DIAS_CERRADOS.includes(diaSemana)) {
+                timeSlotsSection.classList.add('hidden');
                 return;
             }
 
-            availableTimes.forEach(time => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.textContent = time;
-                btn.className = 'p-3 border rounded-lg time-slot-btn hover:bg-gray-200';
-                btn.dataset.time = time;
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.time-slot-btn.selected').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    selectedTime = btn.dataset.time;
-                    bookingFormContainer.classList.remove('hidden');
-                });
-                timeSlotsGrid.appendChild(btn);
-            });
+            state.date = selectedDate;
 
-        } catch (error) {
-            // El catch original y correcto para esta parte
-            loader.classList.add('hidden');
-            timeSlotsGrid.innerHTML = `<p class="col-span-full text-center text-red-500">${error.message}</p>`;
-        }
-    });
-
-    // Envía el formulario para crear la reserva
-    bookingForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        responseMessage.innerHTML = '<p>Procesando tu reserva...</p>';
-
-        const formData = new FormData(bookingForm);
-        const bookingData = {
-            date: datePicker.value,
-            time: selectedTime,
-            service: formData.get('service'),
-            name: formData.get('name'),
-            email: formData.get('email')
-        };
-
-        try {
-            const response = await fetch(CREATE_BOOKING_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(bookingData)
-            });
-
-            // ✅ ESTA ES LA FORMA CORRECTA DE MANEJAR EL ERROR ESPECIALIZADO
-            if (!response.ok) {
-                const errorData = await response.json();
-                // Lanzamos un nuevo error con el mensaje específico de n8n
-                throw new Error(errorData.error || 'No se pudo completar la reserva.');
-            }
-
-            const result = await response.json();
-            
-            document.querySelector('#booking-system').innerHTML = `
-                <div class="text-center bg-green-50 p-8 rounded-lg">
-                    <h2 class="text-2xl font-bold text-green-700">¡Reserva Confirmada!</h2>
-                    <p class="mt-2 text-green-600">${result.message || 'Recibirás un email con los detalles.'}</p>
-                    <a href="index.html" class="mt-6 inline-block btn-accent">Volver al Inicio</a>
-                </div>`;
-
-        } catch (error) {
-            // Ahora este catch recibe el mensaje de error correcto y específico
-            responseMessage.innerHTML = `<p class="text-red-500 font-bold">${error.message}</p>`;
-        }
-    });
-};
-    // --- LÓGICA DEL CHAT ---
-    const initChat = () => {
-        const webhookUrl = 'https://nexmaia.app.n8n.cloud/webhook/8210fd58-2cd2-49b3-9a56-d9534c292ca5';
-        const chatContainer = document.getElementById('chat-container');
-        const chatToggleButton = document.getElementById('chat-toggle-button');
-        const closeChatBtn = document.getElementById('close-chat-btn');
-        const chatMessages = document.getElementById('chat-messages-container');
-        const userInput = document.getElementById('user-chat-input');
-        const sendButton = document.getElementById('send-chat-button');
-        const pedirCitaButtons = document.querySelectorAll('.js-pedir-cita');
-
-        if (!chatContainer) return; // Si el chat no está cargado, no hacer nada
-
-        let sessionId = localStorage.getItem('chatSessionId');
-        if (!sessionId) {
-            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
-            localStorage.setItem('chatSessionId', sessionId);
-        }
-
-        const openChat = () => {
-            chatContainer.classList.add('visible');
-            chatToggleButton.style.opacity = '0';
-            userInput.focus();
-        };
-
-        const closeChat = () => {
-            chatContainer.classList.remove('visible');
-            chatToggleButton.style.opacity = '1';
-        };
-
-        const addMessage = (text, className) => {
-            const msgEl = document.createElement('div');
-            msgEl.classList.add('message', className);
-            msgEl.textContent = text;
-            chatMessages.appendChild(msgEl);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            return msgEl;
-        };
-
-        const handleSendMessage = async () => {
-            const messageText = userInput.value.trim();
-            if (!messageText) return;
-
-            addMessage(messageText, 'user-message');
-            userInput.value = '';
-            const typingIndicator = addMessage('Asistente está escribiendo...', 'typing-indicator');
+            // Mostrar loader y pedir franjas libres
+            timeSlotsSection.classList.remove('hidden');
+            slotsLoader.classList.remove('hidden');
+            timeSlotsGrid.classList.add('hidden');
+            noSlotsMsg.classList.add('hidden');
+            timeSlotsGrid.innerHTML = '';
 
             try {
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chatInput: messageText, sessionId: sessionId })
+                const url = `${APPS_SCRIPT_URL}?action=availability&date=${selectedDate}`;
+                const res  = await fetch(url);
+                const data = await res.json();
+
+                slotsLoader.classList.add('hidden');
+
+                if (!data.success) throw new Error(data.error);
+
+                if (data.closed || !data.slots || data.slots.length === 0) {
+                    noSlotsMsg.classList.remove('hidden');
+                    return;
+                }
+
+                timeSlotsGrid.classList.remove('hidden');
+
+                data.slots.forEach(hora => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.textContent = hora;
+                    btn.className = 'time-slot-btn';
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.time-slot-btn.selected').forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
+                        state.time = hora;
+
+                        // Actualizar resúmenes y avanzar al paso 3
+                        const fechaFormateada = formatearFecha(selectedDate);
+                        document.getElementById('summary-datetime').textContent = `${fechaFormateada} a las ${hora}h`;
+                        document.getElementById('confirm-datetime').textContent = `${fechaFormateada} a las ${hora}h`;
+                        showStep(3);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                    timeSlotsGrid.appendChild(btn);
                 });
-                const data = await response.json();
-                chatMessages.removeChild(typingIndicator);
-                addMessage(data.text || 'No he podido procesar tu solicitud.', 'bot-message');
-            } catch (error) {
-                chatMessages.removeChild(typingIndicator);
-                addMessage('Hay un problema de conexión. Inténtalo de nuevo.', 'bot-message');
+            } catch (err) {
+                slotsLoader.classList.add('hidden');
+                noSlotsMsg.textContent = 'Error al cargar la disponibilidad. Inténtalo de nuevo.';
+                noSlotsMsg.classList.remove('hidden');
+                console.error(err);
             }
-        };
+        });
 
-        chatToggleButton.addEventListener('click', openChat);
-        closeChatBtn.addEventListener('click', closeChat);
-        sendButton.addEventListener('click', handleSendMessage);
-        userInput.addEventListener('keypress', e => e.key === 'Enter' && handleSendMessage());
+        // ── Paso 3 → Paso 4: Revisar datos ──────────────────────────────
+        goToStep4Btn.addEventListener('click', () => {
+            if (!bookingForm.reportValidity()) return;
 
-        // Manejar botones "Pedir Cita" que abren el chat
-        document.body.addEventListener('click', (e) => {
-            if (e.target.matches('.js-pedir-cita')) {
-                e.preventDefault();
-                openChat();
-                setTimeout(() => {
-                    userInput.value = 'Hola, me gustaría pedir una cita.';
-                    userInput.focus();
-                }, 300);
+            state.name  = document.getElementById('name').value.trim();
+            state.phone = document.getElementById('phone').value.trim();
+            state.email = document.getElementById('email').value.trim();
+
+            document.getElementById('confirm-service').textContent  = state.service;
+            document.getElementById('confirm-name').textContent     = state.name;
+            document.getElementById('confirm-phone').textContent    = state.phone;
+
+            const emailLabel = document.getElementById('confirm-email-label');
+            const emailVal   = document.getElementById('confirm-email');
+            if (state.email) {
+                emailLabel.classList.remove('hidden');
+                emailVal.classList.remove('hidden');
+                emailVal.textContent = state.email;
+            } else {
+                emailLabel.classList.add('hidden');
+                emailVal.classList.add('hidden');
+            }
+
+            bookingResponse.classList.add('hidden');
+            showStep(4);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ── Paso 4: Confirmar reserva ────────────────────────────────────
+        confirmBtn.addEventListener('click', async () => {
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Enviando...';
+            bookingResponse.classList.add('hidden');
+
+            try {
+                const res = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' }, // Apps Script acepta text/plain para evitar preflight CORS
+                    body: JSON.stringify({
+                        action: 'book',
+                        date:    state.date,
+                        time:    state.time,
+                        service: state.service,
+                        name:    state.name,
+                        phone:   state.phone,
+                        email:   state.email,
+                    }),
+                });
+
+                const data = await res.json();
+
+                if (!data.success) throw new Error(data.error || 'No se pudo confirmar la reserva.');
+
+                document.getElementById('success-message').textContent = data.message;
+                showStep(5);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (err) {
+                bookingResponse.textContent = err.message;
+                bookingResponse.className = 'mb-4 p-4 rounded-lg text-center font-medium bg-red-50 text-red-600';
+                bookingResponse.classList.remove('hidden');
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirmar Reserva';
             }
         });
     };
-    
-    // --- EJECUTAR LOS INICIALIZADORES ---
+
+    // --- BANNER DE COOKIES ---
+    // Se ejecuta después de cargar el footer (donde está el banner en el HTML)
+    function initCookieBanner() {
+        const banner = document.getElementById('cookie-banner');
+        if (!banner) return;
+
+        // Si ya dio su respuesta, no mostrar
+        if (localStorage.getItem('cookieConsent')) return;
+
+        // Mostrar con pequeño retardo para que no aparezca antes de renderizar
+        setTimeout(() => banner.classList.add('visible'), 600);
+
+        document.getElementById('cookie-accept').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            banner.classList.remove('visible');
+        });
+
+        document.getElementById('cookie-reject').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            banner.classList.remove('visible');
+        });
+    }
+
+    // --- MODAL DE VACACIONES ---
+    const initVacationModal = () => {
+        const modal = document.getElementById('vacationModal');
+        if (!modal) return;
+
+        // Actualiza estas fechas cuando necesites mostrar el aviso
+        const startDate = new Date('2025-08-19T00:00:00');
+        const endDate   = new Date('2025-09-02T23:59:59');
+        const now       = new Date();
+
+        if (now < startDate || now > endDate) return;
+
+        modal.style.display = 'block';
+
+        const closeBtn = modal.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+        }
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+    };
+
+    // --- UTILIDADES ---
+    function formatearFecha(dateStr) {
+        const d = new Date(dateStr + 'T12:00:00');
+        return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+    }
+
+    // --- INICIALIZAR TODO ---
     initCarousel();
-    initImageModal();
+    initGalleryLightbox();
     initServiceAccordions();
     initBookingSystem();
-    // initChat y initMobileMenu son llamados desde el cargador de componentes
+    initVacationModal();
 });
-   // Fechas de inicio y fin de las vacaciones.
-    // Configurado para Agosto de 2025.
-    const startDate = new Date('2025-08-19T00:00:00'); // 19 de agosto de 2025, 00:00:00
-    const endDate = new Date('2025-09-02T23:59:59');   // 2 de septiembre de 2025, 23:59:59
-    const now = new Date(); // Fecha y hora actual
-
-    // Obtener una referencia al elemento modal y al botón de cierre
-    const modal = document.getElementById('vacationModal');
-    const closeBtn = document.getElementsByClassName('close-btn')[0];
-
-    // Función para mostrar el modal si la fecha actual está dentro del período de vacaciones
-    function showModalIfOnVacation() {
-        if (now >= startDate && now <= endDate) {
-            modal.style.display = 'block'; // Muestra el modal
-        }
-    }
-
-    // Cuando el usuario hace clic en el botón de cierre (X), el modal se oculta
-    closeBtn.onclick = function() {
-        modal.style.display = 'none';
-    }
-
-    // Cuando el usuario hace clic en cualquier lugar fuera del contenido del modal, el modal también se oculta
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    // Llama a la función para verificar y mostrar el modal cuando la página se carga
-    showModalIfOnVacation();
