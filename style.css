@@ -4,7 +4,6 @@
 :root {
     --accent-color: #C09553;
     --accent-color-dark: #B08447;
-    --user-message-color: #4A90E2;
     --text-dark: #3A3226;
     --text-medium: #6B5E4F;
     --bg-warm-white: #FDFBF6;
@@ -97,150 +96,197 @@ h1, h2, h3, .font-playfair {
 }
 
 /* =================================================================
-   CHATBOT
+   BANNER DE COOKIES
+   Siempre en el DOM pero fuera de pantalla (transform).
+   Se muestra con la clase .visible — permite transición CSS.
 ================================================================= */
-#chat-toggle-button {
+#cookie-banner {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
-    background-color: var(--accent-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 9998;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9990;
+    background-color: #2C2418;
+    color: #F5F1E9;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    /* Oculto debajo de la pantalla */
+    transform: translateY(110%);
+    transition: transform 0.4s ease-out;
 }
-#chat-toggle-button:hover {
-    transform: scale(1.1);
-}
-
-#chat-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 90%;
-    max-width: 370px;
-    height: 70vh;
-    max-height: 550px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-    z-index: 9999;
-}
-#chat-container.visible {
-    opacity: 1;
+#cookie-banner.visible {
     transform: translateY(0);
-    pointer-events: auto;
 }
-
-#chat-header {
-    background-color: var(--accent-color);
-    color: white;
-    padding: 15px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+.cookie-banner-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
-#chat-header h3 {
-    margin: 0;
-    font-size: 16px;
+.cookie-banner-text {
+    flex: 1;
+    min-width: 200px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #D9CEBF;
 }
-#close-chat-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    line-height: 1;
+.cookie-banner-text strong {
+    color: #F5F1E9;
 }
-
-#chat-messages-container {
-    flex-grow: 1;
-    padding: 15px;
-    overflow-y: auto;
+.cookie-banner-text a {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+.cookie-banner-text a:hover {
+    color: #D4A96A;
+}
+.cookie-banner-buttons {
     display: flex;
-    flex-direction: column;
     gap: 10px;
-    background-color: #f9f9f9;
+    flex-shrink: 0;
+    flex-wrap: wrap;
 }
-
-.message {
-    padding: 10px 15px;
-    border-radius: 18px;
-    max-width: 80%;
-    word-wrap: break-word;
-    line-height: 1.4;
+.cookie-btn {
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
 }
-.bot-message {
-    background-color: #EFEFEF;
-    color: #333;
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-}
-.user-message {
-    background-color: var(--user-message-color);
-    color: white;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-}
-.typing-indicator {
-    color: #888;
-    font-style: italic;
-    align-self: flex-start;
-    background: none;
-    padding-left: 0;
-}
-
-#chat-input-area {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #eee;
-    background-color: #fff;
-}
-#user-chat-input {
-    flex-grow: 1;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 10px 15px;
-    font-size: 14px;
-    margin-right: 10px;
-}
-#user-chat-input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px rgba(192, 149, 83, 0.2);
-}
-
-#send-chat-button {
+.cookie-btn-solid {
     background-color: var(--accent-color);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    color: #fff;
+    border: 2px solid var(--accent-color);
+}
+.cookie-btn-solid:hover {
+    background-color: var(--accent-color-dark);
+    border-color: var(--accent-color-dark);
+}
+.cookie-btn-outline {
+    background-color: transparent;
+    color: #D9CEBF;
+    border: 2px solid #5A4F42;
+}
+.cookie-btn-outline:hover {
+    border-color: #D9CEBF;
+    color: #F5F1E9;
+}
+
+/* =================================================================
+   GALERÍA — items con overlay
+================================================================= */
+.gallery-item {
+    position: relative;
+}
+.gallery-overlay {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* =================================================================
+   LIGHTBOX
+================================================================= */
+#lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.92);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    animation: lightboxFadeIn 0.2s ease-out;
+}
+#lightbox.open {
+    display: flex;
+}
+@keyframes lightboxFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+#lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    animation: lightboxImgIn 0.2s ease-out;
+}
+@keyframes lightboxImgIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}
+#lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: rgba(255,255,255,0.8);
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1;
+    background: none;
+    border: none;
     cursor: pointer;
-    flex-shrink: 0;
-    transition: background-color 0.2s;
+    transition: color 0.2s;
+    z-index: 1;
 }
-#send-chat-button:hover {
-    background-color: var(--accent-color-dark);
+#lightbox-close:hover { color: #fff; }
+
+#lightbox-prev,
+#lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 16px;
+    transition: color 0.2s;
+    user-select: none;
+    z-index: 1;
 }
+#lightbox-prev { left: 0; }
+#lightbox-next { right: 0; }
+#lightbox-prev:hover,
+#lightbox-next:hover { color: #fff; }
+
+#lightbox-counter {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    #lightbox-prev,
+    #lightbox-next {
+        font-size: 2.5rem;
+        padding: 0 8px;
+    }
+}
+
+/* =================================================================
+   MODAL DE AVISO
+================================================================= */
  /* Estilos del panel emergente (modal) */
         .modal {
             display: none; /* Oculto por defecto */
